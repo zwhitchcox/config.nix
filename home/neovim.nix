@@ -49,16 +49,15 @@ in
     vim-haskell-module-name
     vim-surround
   ] ++ map (p: { plugin = p; optional = true; }) [
-    which-key-nvim
     zoomwintab-vim
   ] ++ map nonVSCodePlugin [
-    agda-vim
     copilot-vim
     direnv-vim
     goyo-vim
     vim-fugitive
   ] ++ map nonVSCodePluginWithConfig [
-    (pluginWithDeps coq_nvim [ coq-artifacts coq-thirdparty ])
+    which-key-nvim
+    nvim-tree-lua
     editorconfig-vim
     (pluginWithDeps galaxyline-nvim [ nvim-web-devicons ])
     gitsigns-nvim

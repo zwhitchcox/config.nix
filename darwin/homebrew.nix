@@ -45,11 +45,8 @@ in
   homebrew.masApps = {
     # "1Blocker" = 1365531024;
     # "1Password" = 1333542190;
-    "1Password for Safari" = 1569813296;
-    "Accelerate for Safari" = 1459809092;
     # "Apple Configurator 2" = 1037126344;
     DaisyDisk = 411643860;
-    "Dark Mode for Safari" = 1397180934;
     Deliveries = 290986013;
     Fantastical = 975937182;
     # "Gemini 2" = 1090488118;
@@ -67,7 +64,7 @@ in
     "Things 3" = 904280696;
     # TripMode = 1513400665;
     # Ulysses = 1225570693;
-    Vimari = 1480933944;
+    # Vimari = 1480933944;
     "WiFi Explorer" = 494803304;
     # TODO: Re-enable once macOS Ventura officially launches
     # Xcode = 497799835;

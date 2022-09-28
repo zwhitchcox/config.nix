@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -x
+
+build() {
+  git add . -A
+  nix --extra-experimental-features "nix-command flakes" build .#darwinConfigurations.BalenaBook.system
+}
+
+home() {
+  ./result/activate-user
+}
+
+system() {
+  sudo ./result/activate
+}
+
+case $1 in
+  "home")
+    build && home;;
+  "system")
+    build && system;;
+  "both")
+    build && home && system;;
+  *)
+    echo "expected 'home' or 'system'";;
+esac

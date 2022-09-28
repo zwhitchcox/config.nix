@@ -1,5 +1,5 @@
 {
-  description = "Malo’s Nix system configs, and some other useful stuff.";
+  description = "Zane’s Nix system configs, and some other useful stuff. (forked from malob/nixpkgs)";
 
   inputs = {
     # Package sets
@@ -35,22 +35,15 @@
         config = {
           allowUnfree = true;
         };
-        overlays = attrValues self.overlays ++ [
-          # Sub in x86 version of packages that don't build on Apple Silicon yet
-          (final: prev: (optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
-            inherit (final.pkgs-x86)
-              idris2;
-          }))
-        ];
       };
 
       homeManagerStateVersion = "22.11";
 
       primaryUserInfo = {
-        username = "malo";
-        fullName = "Malo Bourgon";
-        email = "mbourgon@gmail.com";
-        nixConfigDirectory = "/Users/malo/.config/nixpkgs";
+        username = "zwhitchcox";
+        fullName = "Zane Hitchcox";
+        email = "zwhitchcox@gmail.com";
+        nixConfigDirectory = "/Users/zwhitchcox/.config/nixpkgs";
       };
 
       # Modules shared by most `nix-darwin` personal configurations.
@@ -89,21 +82,21 @@
 
       # My `nix-darwin` configs
       darwinConfigurations = rec {
-        # Mininal configurations to bootstrap systems
+        # Minimal configurations to bootstrap systems
         bootstrap-x86 = makeOverridable darwinSystem {
           system = "x86_64-darwin";
           modules = [ ./darwin/bootstrap.nix { nixpkgs = nixpkgsConfig; } ];
         };
         bootstrap-arm = bootstrap-x86.override { system = "aarch64-darwin"; };
 
-        # My Apple Silicon macOS laptop config
-        MaloBookPro = darwinSystem {
-          system = "aarch64-darwin";
+        # My macOS laptop config
+        BalenaBook = darwinSystem {
+          system = "x86_64-darwin";
           modules = nixDarwinCommonModules ++ [
             {
               users.primaryUser = primaryUserInfo;
-              networking.computerName = "Malo’s 💻";
-              networking.hostName = "MaloBookPro";
+              networking.computerName = "Zane’s 💻";
+              networking.hostName = "BalenaBook";
               networking.knownNetworkServices = [
                 "Wi-Fi"
                 "USB 10/100/1000 LAN"
@@ -130,7 +123,7 @@
       # Config I use with Linux cloud VMs
       # Build and activate on new system with:
       # `nix build .#homeConfigurations.malo.activationPackage; ./result/activate`
-      homeConfigurations.malo = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.zwhitchcox = home-manager.lib.homeManagerConfiguration {
         pkgs = import inputs.nixpkgs-unstable {
           system = "x86_64-linux";
           inherit (nixpkgsConfig) config overlays;

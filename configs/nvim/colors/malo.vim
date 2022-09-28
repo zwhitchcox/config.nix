@@ -2,7 +2,7 @@
 " usable with alternate colors.
 " Still early days, with lots of work needed
 " See `../lua/malo-theme.lua`
-let g:colors_name = 'malo'
+" let g:colors_name = 'malo'
 
-" Load colorscheme
-lua require'malo.theme'.loadColorscheme()
+" " Load colorscheme
+" lua require'malo.theme'.loadColorscheme()
