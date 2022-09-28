@@ -200,10 +200,10 @@
 
       darwinModules = {
         # My configurations
-        malo-bootstrap = import ./darwin/bootstrap.nix;
-        malo-defaults = import ./darwin/defaults.nix;
-        malo-general = import ./darwin/general.nix;
-        malo-homebrew = import ./darwin/homebrew.nix;
+        user-bootstrap = import ./darwin/bootstrap.nix;
+        user-defaults = import ./darwin/defaults.nix;
+        user-general = import ./darwin/general.nix;
+        user-homebrew = import ./darwin/homebrew.nix;
 
         # Modules I've created
         programs-nix-index = import ./modules/darwin/programs/nix-index.nix;
@@ -212,17 +212,17 @@
 
       homeManagerModules = {
         # My configurations
-        malo-colors = import ./home/colors.nix;
-        malo-config-files = import ./home/config-files.nix;
-        malo-fish = import ./home/fish.nix;
-        malo-git = import ./home/git.nix;
-        malo-git-aliases = import ./home/git-aliases.nix;
-        malo-gh-aliases = import ./home/gh-aliases.nix;
-        malo-kitty = import ./home/kitty.nix;
-        malo-neovim = import ./home/neovim.nix;
-        malo-packages = import ./home/packages.nix;
-        malo-starship = import ./home/starship.nix;
-        malo-starship-symbols = import ./home/starship-symbols.nix;
+        user-colors = import ./home/colors.nix;
+        user-config-files = import ./home/config-files.nix;
+        user-fish = import ./home/fish.nix;
+        user-git = import ./home/git.nix;
+        user-git-aliases = import ./home/git-aliases.nix;
+        user-gh-aliases = import ./home/gh-aliases.nix;
+        user-kitty = import ./home/kitty.nix;
+        user-neovim = import ./home/neovim.nix;
+        user-packages = import ./home/packages.nix;
+        user-starship = import ./home/starship.nix;
+        user-starship-symbols = import ./home/starship-symbols.nix;
 
         # Modules I've created
         colors = import ./modules/home/colors;

@@ -1,4 +1,4 @@
-local keymaps = require'malo.utils'.keymaps
+local keymaps = require'user.utils'.keymaps
 
 -- coq_nvim
 -- https://github.com/ms-jpq/coq_nvim

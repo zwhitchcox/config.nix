@@ -1,4 +1,4 @@
-local utils = require 'malo.utils'
+local utils = require 'user.utils'
 local s = utils.symbols
 
 -- lspsaga.nvim (fork)

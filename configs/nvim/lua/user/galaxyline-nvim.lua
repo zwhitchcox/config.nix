@@ -1,4 +1,4 @@
-local utils = require 'malo.utils'
+local utils = require 'user.utils'
 local const = utils.const
 local s = utils.symbols
 
@@ -35,7 +35,7 @@ gl.section.left = {
     FileIcon = {
       condition = condition.buffer_not_empty,
       provider = function ()
-        vim.cmd('hi GalaxyFileIcon guifg='..require'galaxyline.providers.fileinfo'.get_file_icon_color()..' guibg='..require'lush_theme.malo'.StatusLine.bg.hex)
+        vim.cmd('hi GalaxyFileIcon guifg='..require'galaxyline.providers.fileinfo'.get_file_icon_color())
         return require'galaxyline.providers.fileinfo'.get_file_icon() .. ' '
       end,
       highlight = {},

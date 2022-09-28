@@ -1,4 +1,4 @@
-local augroup = require'malo.utils'.augroup
+local augroup = require'user.utils'.augroup
 
 -- vim-pencil
 -- Adds a bunch of really nice features for writing

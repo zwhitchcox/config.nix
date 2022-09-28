@@ -1,4 +1,4 @@
-local s = require'malo.utils'.symbols
+local s = require'user.utils'.symbols
 
 -- Tabline
 -- bufferline.nvim

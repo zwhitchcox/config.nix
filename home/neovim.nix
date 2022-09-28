@@ -12,7 +12,7 @@ let
     optional = true;
     config = ''
       if !exists('g:vscode')
-        lua require('malo.' .. string.gsub('${plugin.pname}', '%.', '-'))
+        lua require('user.' .. string.gsub('${plugin.pname}', '%.', '-'))
       endif
     '';
   };
