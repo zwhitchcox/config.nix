@@ -205,7 +205,7 @@
         user-general = import ./darwin/general.nix;
         user-homebrew = import ./darwin/homebrew.nix;
 
-        # Modules I've created
+        # # Modules I've created
         programs-nix-index = import ./modules/darwin/programs/nix-index.nix;
         users-primaryUser = import ./modules/darwin/users.nix;
       };
@@ -224,7 +224,7 @@
         user-starship = import ./home/starship.nix;
         user-starship-symbols = import ./home/starship-symbols.nix;
 
-        # Modules I've created
+        # # Modules I've created
         colors = import ./modules/home/colors;
         programs-neovim-extras = import ./modules/home/programs/neovim/extras.nix;
         programs-kitty-extras = import ./modules/home/programs/kitty/extras.nix;

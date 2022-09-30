@@ -82,13 +82,13 @@ in
         else
           alias btm "btm --color default"
         end
-      '' + optionalString config.programs.neovim.enable ''
+      # '' + optionalString config.programs.neovim.enable ''
 
-      # Set `background` of all running Neovim instances.
-      for server in (${pkgs.neovim-remote}/bin/nvr --serverlist)
-        ${pkgs.neovim-remote}/bin/nvr -s --nostart --servername $server \
-          -c "set background=$term_background" &
-      end
+      # # Set `background` of all running Neovim instances.
+      # for server in (${pkgs.neovim-remote}/bin/nvr --serverlist)
+        # ${pkgs.neovim-remote}/bin/nvr -s --nostart --servername $server \
+        #   -c "set background=$term_background" &
+      # end
       '';
       onVariable = "term_background";
     };
