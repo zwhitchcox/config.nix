@@ -91,9 +91,9 @@ telescope.setup {
     },
   },
   extensions = {
-    file_browser = {
-      hijack_netrw = true,
-    },
+    -- file_browser = {
+    --   hijack_netrw = true,
+    -- },
   },
 }
 
