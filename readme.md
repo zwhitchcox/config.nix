@@ -1,5 +1,15 @@
 # My Nix Configs
 
+## INSTALLATION
+
+1. Fork and clone repo:
+```
+git clone https://github.com:[YOUR_GH_USERNAME]/nixpkgs
+
+```
+
+2. `./switch` to install this repo on a darwin computer
+
 ![Build Nix envs](https://github.com/malob/nixpkgs/workflows/Build%20Nix%20envs/badge.svg)
 
 This repo contains my Nix configs for macOS and Linux and by extension, configuration for most tools/programs I use, at least in the terminal.

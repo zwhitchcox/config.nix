@@ -51,7 +51,7 @@
       end
     end
   '';
-  environment.variables.SHELL = "${pkgs.fish}/bin/fish";
+  environment.variables.SHELL = "/run/current-system/sw/bin/fish";
 
   # Install and setup ZSH to work with nix(-darwin) as well
   programs.zsh.enable = true;

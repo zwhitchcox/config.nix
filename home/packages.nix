@@ -53,11 +53,6 @@
     # (agda.withPackages (p: [ p.standard-library ]))
     cloc # source code line counter
     google-cloud-sdk
-    haskellPackages.cabal-install
-    haskellPackages.hoogle
-    haskellPackages.hpack
-    haskellPackages.implicit-hie
-    haskellPackages.stack
     idris2
     jq
     nodePackages.typescript
