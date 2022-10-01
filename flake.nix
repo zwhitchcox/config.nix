@@ -223,6 +223,7 @@
         user-packages = import ./home/packages.nix;
         user-starship = import ./home/starship.nix;
         user-starship-symbols = import ./home/starship-symbols.nix;
+        user-scripts = import ./home/scripts.nix;
 
         # # Modules I've created
         colors = import ./modules/home/colors;

@@ -50,6 +50,14 @@
         set -g fish_user_paths $fish_user_paths $p
       end
     end
+    set scriptdir $HOME/.config/scripts
+    if [ -d $scriptdir ];
+      for p in $scriptdir/* ;
+        if not contains $p $fish_user_paths
+          set -g fish_user_paths $fish_user_paths $p
+        end
+      end
+    end
   '';
   environment.variables.SHELL = "/run/current-system/sw/bin/fish";
 
