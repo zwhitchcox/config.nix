@@ -42,7 +42,6 @@ local options = {
   linebreak  = true,                       -- soft wraps on words not individual chars
   mouse      = 'a',                        -- enable mouse support in all modes
   updatetime = 300,                        -- faster completion (4000ms default)
-  autochdir  = true,
   exrc       = true ,                      -- allow project specific config in .nvimrc or .exrc files
   --
   -- Search and replace

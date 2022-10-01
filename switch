@@ -22,6 +22,8 @@ case $1 in
     build && system;;
   "both")
     build && home && system;;
+  "")
+    build && home && system;;
   *)
     echo "expected 'home' or 'system'";;
 esac
