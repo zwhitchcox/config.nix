@@ -25,7 +25,7 @@ let
   term-background = pkgs.writeShellScriptBin "term-background" ''
     # Accepts arguments "light" or "dark". If shell is running in a Kitty window set the colors.
     if [ -n "$KITTY_WINDOW_ID" ]; then
-      kitty @ --to $KITTY_LISTEN_ON set-colors --all --configured \
+      kitty @  set-colors --all --configured \
         ${kitty-colors}/"$1"-colors.conf &
     fi
   '';
