@@ -2,9 +2,19 @@
 
 set -x
 
+sys=$(uname -s | tr '[:upper:]' '[:lower:]')
+alias bld='nix --extra-experimental-features "nix-command flakes" build'
+
 build() {
   git add . -A
-  nix --extra-experimental-features "nix-command flakes" build .#darwinConfigurations.BalenaBook.system
+  case $sys in
+    "linux")
+      bld .#linux.$(hostname).system
+      ;;
+    "darwin")
+      bld .#darwin.$(hostname).system
+      ;;
+  esac
 }
 
 home() {

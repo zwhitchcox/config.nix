@@ -122,8 +122,8 @@
 
       # Config I use with Linux cloud VMs
       # Build and activate on new system with:
-      # `nix build .#homeConfigurations.malo.activationPackage; ./result/activate`
-      homeConfigurations.zwhitchcox = home-manager.lib.homeManagerConfiguration {
+      # `nix build .#homeConfigurations.user.activationPackage; ./result/activate`
+      homeConfigurations.user = home-manager.lib.homeManagerConfiguration {
         pkgs = import inputs.nixpkgs-unstable {
           system = "x86_64-linux";
           inherit (nixpkgsConfig) config overlays;
