@@ -1,6 +1,6 @@
 
-vim.api.nvim_set_keymap('n', '<c-z>', [[<cmd>lua min_max_win()<CR>]], {silent=true,noremap=true})
-vim.api.nvim_set_keymap('t', '<c-z>', [[<cmd>lua min_max_win()<CR>]], {silent=true,noremap=true})
+vim.api.nvim_set_keymap('n', '<c-s-z>', [[<cmd>lua min_max_win()<CR>]], {silent=true,noremap=true})
+vim.api.nvim_set_keymap('t', '<c-s-z>', [[<cmd>lua min_max_win()<CR>]], {silent=true,noremap=true})
 local last = -1
 function _G.min_max_win()
   local total_height = tonumber(vim.api.nvim_command_output([[echo &lines]]))
