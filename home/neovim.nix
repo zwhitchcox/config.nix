@@ -41,6 +41,10 @@ in
 
   programs.neovim.extraLuaPackages = [ pkgs.lua51Packages.penlight ];
 
+  home.packages = with pkgs; [
+    ripgrep # for telescope text search
+  ];
+
   programs.neovim.plugins = with pkgs.vimPlugins; [
     lush-nvim
     tabular

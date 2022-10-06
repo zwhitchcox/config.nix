@@ -48,6 +48,7 @@
     unrar # extract RAR archives
     wget
     xz # extract XZ archives
+    fzf
 
     # Dev stuff
     # (agda.withPackages (p: [ p.standard-library ]))

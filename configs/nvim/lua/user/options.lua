@@ -1,4 +1,4 @@
-vim.cmd 'colorscheme tokyonight'
+-- vim.cmd 'colorscheme tokyonight'
 
 local options = {
   backup = false,                          -- creates a backup file

@@ -3,26 +3,37 @@
 set -x
 
 sys=$(uname -s | tr '[:upper:]' '[:lower:]')
-alias bld='nix --extra-experimental-features "nix-command flakes" build'
+name=${2:-$(hostname)}
+
+nixos() {
+  cat /etc/os-release | grep -q 'NAME=NixOS'
+}
+
+do_bld() {
+  nix --extra-experimental-features "nix-command flakes" build $1
+}
 
 build() {
   git add . -A
-  case $sys in
-    "linux")
-      bld .#linux.$(hostname).system
-      ;;
-    "darwin")
-      bld .#darwin.$(hostname).system
-      ;;
-  esac
+  if [ $sys == darwin ]; then
+    do_bld .#darwinConfigurations.$name.system
+  elif [ $sys == linux ]; then
+    if ! cat /etc/os-release | grep -q 'NAME=NixOS' ; then
+      do_bld .#homeConfigurations.user.activationPackage
+    fi
+  fi
 }
 
 home() {
-  ./result/activate-user
+  nixos && do_bld .#homeConfigurations.user.activationPackage || exit
+  ./result/activate
+  # do_bld .#nixosConfigurations.x1.config.system.build.toplevel
+  # do_bld .#homeConfigurations.user.activationPackage
+  # do_bld .#nixConfigurations."$name".config.system.build.toplevel
 }
 
 system() {
-  sudo ./result/activate
+  nixos && sudo nixos-rebuild switch --flake .#x1 || exit
 }
 
 case $1 in

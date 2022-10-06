@@ -4,7 +4,8 @@
   inputs = {
     # Package sets
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-22.05-darwin";
+    # nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-22.05-darwin";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixos-stable.url = "github:NixOS/nixpkgs/nixos-22.05";
 
@@ -28,6 +29,7 @@
       # Some building blocks ------------------------------------------------------------------- {{{
 
       inherit (darwin.lib) darwinSystem;
+      inherit (inputs.nixpkgs-unstable.lib) nixosSystem;
       inherit (inputs.nixpkgs-unstable.lib) attrValues makeOverridable optionalAttrs singleton;
 
       # Configuration for `nixpkgs`
@@ -35,6 +37,7 @@
         config = {
           allowUnfree = true;
         };
+	overlays = attrValues self.overlays;
       };
 
       homeManagerStateVersion = "22.11";
@@ -74,6 +77,30 @@
           }
         )
       ];
+
+      # Modules shared by most `nixos` personal configurations.
+      nixosCommonModules = attrValues self.nixosModules ++ [
+        # `home-manager` module
+        home-manager.nixosModules.home-manager
+        (
+          { config, ... }:
+          {
+            nixpkgs = nixpkgsConfig;
+            # nix.nixPath = { nixpkgs = "${inputs.nixpkgs-unstable}"; };
+            # `home-manager` config
+            users.users.${primaryUserInfo.username}.home = "/home/${primaryUserInfo.username}";
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${primaryUserInfo.username} = {
+              imports = attrValues self.homeManagerModules;
+              home.stateVersion = homeManagerStateVersion;
+              home.user-info = primaryUserInfo;
+            };
+            # Add a registry entry for this flake
+            nix.registry.my.flake = self;
+          }
+        )
+      ];
       # }}}
     in
     {
@@ -89,14 +116,14 @@
         };
         bootstrap-arm = bootstrap-x86.override { system = "aarch64-darwin"; };
 
-        # My macOS laptop config
-        BalenaBook = darwinSystem {
+        # My MacBook Pro laptop config
+        NoobBookPro = darwinSystem {
           system = "x86_64-darwin";
           modules = nixDarwinCommonModules ++ [
             {
               users.primaryUser = primaryUserInfo;
-              networking.computerName = "Zane’s 💻";
-              networking.hostName = "BalenaBook";
+              networking.computerName = "NoobBookPro";
+              networking.hostName = "NoobBookPro";
               networking.knownNetworkServices = [
                 "Wi-Fi"
                 "USB 10/100/1000 LAN"
@@ -104,6 +131,7 @@
             }
           ];
         };
+	
 
         # Config with small modifications needed/desired for CI with GitHub workflow
         githubCI = darwinSystem {
@@ -116,6 +144,20 @@
               };
               homebrew.enable = lib.mkForce false;
             })
+          ];
+        };
+      };
+
+      # my `nixos` configs
+      nixosConfigurations = {
+        x1 = nixosSystem {
+          system = "x86_64-linux";
+          modules = nixosCommonModules ++ [
+            ./linux/hw/x1.nix
+            {
+              # users.primaryUser = primaryUserInfo;
+              config.networking.hostName = "x1";
+            }
           ];
         };
       };
@@ -145,7 +187,7 @@
         # Overlays to add different versions `nixpkgs` into package set
         pkgs-master = _: prev: {
           pkgs-master = import inputs.nixpkgs-master {
-            inherit (prev.stdenv) system;
+            inherit (prev.stdenv) systemth;
             inherit (nixpkgsConfig) config;
           };
         };
@@ -208,6 +250,11 @@
         # # Modules I've created
         programs-nix-index = import ./modules/darwin/programs/nix-index.nix;
         users-primaryUser = import ./modules/darwin/users.nix;
+      };
+
+      nixosModules = {
+        user-bootstrap = import ./linux/bootstrap.nix;
+        user-general = import ./linux/general.nix;
       };
 
       homeManagerModules = {

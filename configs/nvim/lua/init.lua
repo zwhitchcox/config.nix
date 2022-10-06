@@ -34,7 +34,7 @@ local cmd = vim.cmd
 
 
 
-vim.cmd 'colorscheme tokyonight'
+-- vim.cmd 'colorscheme tokyonight'
 
 local options = {
   -- Basic Vim Config --------------------------------------------------------------------------------
