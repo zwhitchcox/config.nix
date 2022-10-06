@@ -3,7 +3,7 @@
 rec {
   imports =
     [
-      
+
       ./wm/gnome.nix
       ./sound
       ./hw/fs.nix
@@ -16,7 +16,6 @@ rec {
     };
     environment.systemPackages = with pkgs; [
       vim
-      neovim
       git
       firefox
     ];
@@ -99,22 +98,21 @@ rec {
     };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.zwhitchcox = {
-      isNormalUser = true;
-      description = "Zane Hitchcox";
-      extraGroups = [ "networkmanager" "wheel" ];
-      shell = pkgs.fish;
-      packages = with pkgs; [
-        firefox
-        neovim
-        polybar
-      #  thunderbird
-      ];
-    };
-    users.mutableUsers = true;
+    # users.users.zwhitchcox = {
+    #   isNormalUser = true;
+    #   description = "Zane Hitchcox";
+    #   extraGroups = [ "networkmanager" "wheel" ];
+    #   shell = pkgs.fish;
+    #   packages = with pkgs; [
+    #     firefox
+    #     neovim
+    #     polybar
+    #   ];
+    # };
+    # users.mutableUsers = true;
 
     # Allow unfree packages
-    # nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.allowUnfree = true;
 
     # Bootloader.
     boot.loader.systemd-boot.enable = true;

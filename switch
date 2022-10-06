@@ -18,7 +18,7 @@ build() {
   if [ $sys == darwin ]; then
     do_bld .#darwinConfigurations.$name.system
   elif [ $sys == linux ]; then
-    if ! cat /etc/os-release | grep -q 'NAME=NixOS' ; then
+    if ! nixos ; then
       do_bld .#homeConfigurations.user.activationPackage
     fi
   fi
@@ -40,6 +40,8 @@ case $1 in
   "home")
     build && home;;
   "system")
+    build && system;;
+  "sys")
     build && system;;
   "both")
     build && home && system;;

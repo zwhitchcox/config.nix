@@ -48,6 +48,9 @@
         email = "zwhitchcox@gmail.com";
         nixConfigDirectory = "/Users/zwhitchcox/.config/nixpkgs";
       };
+      primaryUserInfoLinux = primaryUserInfo // {
+        nixConfigDirectory = "/home/zwhitchcox/.config/nixpkgs";
+      };
 
       # Modules shared by most `nix-darwin` personal configurations.
       nixDarwinCommonModules = attrValues self.darwinModules ++ [
@@ -85,19 +88,37 @@
         (
           { config, ... }:
           {
-            nixpkgs = nixpkgsConfig;
+            # Hack to support legacy worklows that use `<nixpkgs>` etc.
+            # nix.nixPath = { nixpkgs = "${primaryUserInfoLinux.nixConfigDirectory}/nixpkgs.nix"; };
+            # nix.nixPath = [ "${inputs.nixpkgs-unstable}" ];
             # nix.nixPath = { nixpkgs = "${inputs.nixpkgs-unstable}"; };
+            # nix.nixPath = [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
+            # nixpkgs = import inputs.nixpkgs-stable {
+            #   system = "x86_64-linux";
+            #   inherit (nixpkgsConfig) config overlays;
+            # };
+
+            nixpkgs = nixpkgsConfig;
+
             # `home-manager` config
-            users.users.${primaryUserInfo.username}.home = "/home/${primaryUserInfo.username}";
+            # nixpkgs = import inputs.nixpkgs-unstable {
+              # system = "x86_64-linux";
+              # inherit (nixpkgsConfig) config overlays;
+            # };
+            users.users.${primaryUserInfo.username} = {
+              home = "/home/${primaryUserInfo.username}";
+              isNormalUser = true;
+              extraGroups = [ "wheel" "networkmanager" ];
+            };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${primaryUserInfo.username} = {
               imports = attrValues self.homeManagerModules;
               home.stateVersion = homeManagerStateVersion;
-              home.user-info = primaryUserInfo;
+              home.user-info = primaryUserInfoLinux;
             };
             # Add a registry entry for this flake
-            nix.registry.my.flake = self;
+	    nix.registry.my.flake = self;
           }
         )
       ];
@@ -187,7 +208,7 @@
         # Overlays to add different versions `nixpkgs` into package set
         pkgs-master = _: prev: {
           pkgs-master = import inputs.nixpkgs-master {
-            inherit (prev.stdenv) systemth;
+            inherit (prev.stdenv) system;
             inherit (nixpkgsConfig) config;
           };
         };
@@ -202,6 +223,10 @@
             inherit (prev.stdenv) system;
             inherit (nixpkgsConfig) config;
           };
+        };
+
+        myoverlay = _: prev: {
+          home.packages = [ inputs.nixpkgs-unstable.fzf ];
         };
 
         prefmanager = _: prev: {
@@ -219,7 +244,6 @@
           {
             vimPlugins = prev.vimPlugins.extend (_: _:
               vimUtils.buildVimPluginsFromFlakeInputs inputs [
-                # Add flake input name here
               ]
             );
           };
@@ -284,7 +308,7 @@
       # }}}
 
       # Add re-export `nixpkgs` packages with overlays.
-      # This is handy in combination with `nix registry add my /Users/malo/.config/nixpkgs`
+      # This is handy in combination with `nix registry add my /Users/user/.config/nixpkgs`
     } // flake-utils.lib.eachDefaultSystem (system: {
       legacyPackages = import inputs.nixpkgs-unstable {
         inherit system;

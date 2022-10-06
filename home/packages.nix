@@ -24,6 +24,7 @@
   # https://github.com/ajeetdsouza/zoxide
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.zoxide.enable
   programs.zoxide.enable = true;
+  programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
     # Some basics
@@ -48,7 +49,6 @@
     unrar # extract RAR archives
     wget
     xz # extract XZ archives
-    fzf
 
     # Dev stuff
     # (agda.withPackages (p: [ p.standard-library ]))
