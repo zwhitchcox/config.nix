@@ -17,7 +17,7 @@
 
     # Commit commands
     amend = "commit --amend --no-edit";
-    c = "commit";
+    c = "!git add -A && git commit -m";
     ca = "commit -a";
     cam = "commit -a -m";
     cm = "commit -m";
