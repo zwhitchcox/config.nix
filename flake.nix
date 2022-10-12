@@ -86,7 +86,7 @@
         # `home-manager` module
         home-manager.nixosModules.home-manager
         (
-          { config, ... }:
+          { config, pkgs, ... }:
           {
             nixpkgs = nixpkgsConfig;
             nix.nixPath = [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
@@ -94,6 +94,7 @@
               home = "/home/${primaryUserInfo.username}";
               isNormalUser = true;
               extraGroups = [ "wheel" "networkmanager" ];
+              shell = pkgs.fish;
             };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
