@@ -46,10 +46,10 @@
         username = "zwhitchcox";
         fullName = "Zane Hitchcox";
         email = "zwhitchcox@gmail.com";
-        nixConfigDirectory = "/Users/zwhitchcox/.config/nixpkgs";
+        nixConfigDirectory = "/Users/zwhitchcox/.config/nix";
       };
       primaryUserInfoLinux = primaryUserInfo // {
-        nixConfigDirectory = "/home/zwhitchcox/.config/nixpkgs";
+        nixConfigDirectory = "/home/zwhitchcox/.config/nix";
       };
 
       # Modules shared by most `nix-darwin` personal configurations.
@@ -152,7 +152,7 @@
             }
           ];
         };
-	
+
 
         # Config with small modifications needed/desired for CI with GitHub workflow
         githubCI = darwinSystem {
