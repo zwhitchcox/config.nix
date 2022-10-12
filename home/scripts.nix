@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... } @inputs:
 let
   inherit (lib) optional;
   inherit (config.lib.file) mkOutOfStoreSymlink;
@@ -9,7 +9,16 @@ let
 in
 {
   xdg.configFile."scripts".source = mkOutOfStoreSymlink "${nixConfigDirectory}/scripts";
+  # programs.nix-index = {
+  #   enable = true;
+  #   enableFishIntegration = true;
+  # };
+  # programs.command-not-found.enable = false;
   programs.fish.shellInit = ''
+    # command-not-found replacement
+    # see https://github.com/bennofs/nix-index#usage-as-a-command-not-found-replacement
+    # source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+
     set scriptdir $HOME/.config/scripts
     if [ -d $scriptdir ];
       for p in $scriptdir/* ;

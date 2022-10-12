@@ -22,7 +22,10 @@ rec {
 
     systemd.services.upower.enable = true;
 
+    programs.command-not-found.enable = false;
+
     programs.wshowkeys.enable = true;
+    programs.fish.enable = true;
 
     # Earlyoom prevents systems from locking up when they run out of memory
     services.earlyoom.enable = true;

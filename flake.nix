@@ -88,23 +88,8 @@
         (
           { config, ... }:
           {
-            # Hack to support legacy worklows that use `<nixpkgs>` etc.
-            # nix.nixPath = { nixpkgs = "${primaryUserInfoLinux.nixConfigDirectory}/nixpkgs.nix"; };
-            # nix.nixPath = [ "${inputs.nixpkgs-unstable}" ];
-            # nix.nixPath = { nixpkgs = "${inputs.nixpkgs-unstable}"; };
-            # nix.nixPath = [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
-            # nixpkgs = import inputs.nixpkgs-stable {
-            #   system = "x86_64-linux";
-            #   inherit (nixpkgsConfig) config overlays;
-            # };
-
             nixpkgs = nixpkgsConfig;
-
-            # `home-manager` config
-            # nixpkgs = import inputs.nixpkgs-unstable {
-              # system = "x86_64-linux";
-              # inherit (nixpkgsConfig) config overlays;
-            # };
+            nix.nixPath = [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
             users.users.${primaryUserInfo.username} = {
               home = "/home/${primaryUserInfo.username}";
               isNormalUser = true;
@@ -116,9 +101,10 @@
               imports = attrValues self.homeManagerModules;
               home.stateVersion = homeManagerStateVersion;
               home.user-info = primaryUserInfoLinux;
+              programs.fish.enable = true;
             };
             # Add a registry entry for this flake
-	    nix.registry.my.flake = self;
+            nix.registry.my.flake = self;
           }
         )
       ];
@@ -176,7 +162,6 @@
           modules = nixosCommonModules ++ [
             ./linux/hw/x1.nix
             {
-              # users.primaryUser = primaryUserInfo;
               config.networking.hostName = "x1";
             }
           ];
