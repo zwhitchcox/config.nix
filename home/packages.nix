@@ -49,6 +49,7 @@
     unrar # extract RAR archives
     wget
     xz # extract XZ archives
+    pstree
 
     # Dev stuff
     # (agda.withPackages (p: [ p.standard-library ]))
