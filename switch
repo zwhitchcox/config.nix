@@ -3,11 +3,14 @@
 set -x
 
 sys=$(uname -s | tr '[:upper:]' '[:lower:]')
-name=${2:-$(hostname)}
 
-nixos() {
-  cat /etc/os-release | grep -q 'NAME=NixOS'
-}
+if cat /etc/os-release | grep -q 'NAME=NixOS'; then
+  name=${1:-$(hostname)}
+  sudo nixos-rebuild switch --flake ".#$name"
+  exit
+else
+  name=${2:-$(hostname)}
+fi
 
 do_bld() {
   nix --extra-experimental-features "nix-command flakes" build $1
@@ -18,22 +21,16 @@ build() {
   if [ $sys == darwin ]; then
     do_bld .#darwinConfigurations.$name.system
   elif [ $sys == linux ]; then
-    if ! nixos ; then
-      do_bld .#homeConfigurations.user.activationPackage
-    fi
+    do_bld .#homeConfigurations.user.activationPackage
   fi
 }
 
 home() {
-  nixos && do_bld .#homeConfigurations.user.activationPackage || exit
-  ./result/activate
-  # do_bld .#nixosConfigurations.x1.config.system.build.toplevel
-  # do_bld .#homeConfigurations.user.activationPackage
-  # do_bld .#nixConfigurations."$name".config.system.build.toplevel
+  ./result/activate-user
 }
 
 system() {
-  nixos && sudo nixos-rebuild switch --flake .#x1 || exit
+  ./result/activate
 }
 
 case $1 in
@@ -48,5 +45,5 @@ case $1 in
   "")
     build && home && system;;
   *)
-    echo "expected 'home' or 'system'";;
+    echo "expected 'home' or 'sys[tem]'";;
 esac

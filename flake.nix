@@ -196,7 +196,7 @@
           home.homeDirectory = "/home/${config.home.username}";
           home.stateVersion = homeManagerStateVersion;
           home.user-info = primaryUserInfo // {
-            nixConfigDirectory = "${config.home.homeDirectory}/.config/nixpkgs";
+            nixConfigDirectory = "${config.home.homeDirectory}/.config/nix";
           };
         });
       };
