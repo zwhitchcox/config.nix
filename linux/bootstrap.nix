@@ -39,9 +39,6 @@
   # Needed to address bug where $PATH is not properly set for fish:
   # https://github.com/LnL7/nix-darwin/issues/122
   programs.fish.shellInit = ''
-    if not contains $p $fish_user_paths
-      set -g fish_user_paths $fish_user_paths $p
-    end
     set scriptdir $HOME/.config/scripts
     if [ -d $scriptdir ];
       for p in $scriptdir/* ;
