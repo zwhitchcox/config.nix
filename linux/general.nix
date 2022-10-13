@@ -20,8 +20,9 @@
       gc.options = "--delete-older-than 14d";
 
       optimise.automatic = true;
-      # nixPath = [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
+      # nixPath = pkgs;
     };
+    programs.command-not-found.enable = false;
     services.dbus = {
       enable = true;
       packages = [ pkgs.dconf ];

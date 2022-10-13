@@ -71,6 +71,7 @@
     nixpkgs-review # review pull-requests on nixpkgs
     nodePackages.node2nix
     statix # lints and suggestions for the Nix programming language
+    xsel
 
   ] ++ lib.optionals stdenv.isDarwin [
     cocoapods
