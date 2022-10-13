@@ -55,6 +55,7 @@ in
   ] ++ map (p: { plugin = p; optional = true; }) [
     zoomwintab-vim
   ] ++ map nonVSCodePlugin [
+    tokyonight-nvim
     copilot-vim
     direnv-vim
     goyo-vim

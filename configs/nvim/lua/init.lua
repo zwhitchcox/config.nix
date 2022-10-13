@@ -34,7 +34,6 @@ local cmd = vim.cmd
 
 
 
--- vim.cmd 'colorscheme tokyonight'
 
 
 
@@ -87,3 +86,4 @@ augroup { name = 'UserNeovimTerm', cmds = {
 require 'user.keymaps'
 require 'user.zoom'
 require 'user.options'
+require 'user.theme'
