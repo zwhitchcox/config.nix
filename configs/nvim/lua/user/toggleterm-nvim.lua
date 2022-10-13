@@ -28,6 +28,7 @@ require'toggleterm'.setup {
 		},
 	},
 }
+
 utils.augroup { name = 'UserToggleTermKeymaps', cmds = {
   { 'FileType', {
     pattern = 'toggleterm',

@@ -6,7 +6,7 @@ sys=$(uname -s | tr '[:upper:]' '[:lower:]')
 
 if cat /etc/os-release | grep -q 'NAME=NixOS'; then
   name=${1:-$(hostname)}
-  sudo nixos-rebuild switch --flake ".#$name"
+  sudo nixos-rebuild switch --flake ".#$name" --show-trace
   exit
 else
   name=${2:-$(hostname)}

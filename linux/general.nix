@@ -1,6 +1,6 @@
 
 { config, system, lib, pkgs, inputs, ... }:
-rec {
+{
   imports =
     [
 
@@ -9,7 +9,19 @@ rec {
       ./hw/fs.nix
     ];
   config = {
+    nix = {
+      settings = {
+        experimental-features = [ "nix-command" "flakes" ];
+        auto-optimise-store = true;
+      };
 
+      gc.automatic = true;
+      gc.dates = "weekly";
+      gc.options = "--delete-older-than 14d";
+
+      optimise.automatic = true;
+      # nixPath = [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
+    };
     services.dbus = {
       enable = true;
       packages = [ pkgs.dconf ];
@@ -22,7 +34,6 @@ rec {
 
     systemd.services.upower.enable = true;
 
-    programs.command-not-found.enable = false;
 
     programs.wshowkeys.enable = true;
     programs.fish.enable = true;
@@ -49,18 +60,6 @@ rec {
     networking.networkmanager.enable = true;
     networking.hostName = "x1";
 
-    nix = {
-      settings = {
-        experimental-features = [ "nix-command" "flakes" ];
-        auto-optimise-store = true;
-      };
-
-      gc.automatic = true;
-      gc.dates = "weekly";
-      gc.options = "--delete-older-than 14d";
-
-      optimise.automatic = true;
-    };
 
     # my additions
     fonts.fonts = [ pkgs.nerdfonts ];

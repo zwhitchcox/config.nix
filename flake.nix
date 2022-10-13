@@ -102,7 +102,6 @@
               imports = attrValues self.homeManagerModules;
               home.stateVersion = homeManagerStateVersion;
               home.user-info = primaryUserInfoLinux;
-              programs.fish.enable = true;
             };
             # Add a registry entry for this flake
             nix.registry.my.flake = self;
@@ -265,6 +264,9 @@
       nixosModules = {
         user-bootstrap = import ./linux/bootstrap.nix;
         user-general = import ./linux/general.nix;
+
+        # # Modules I've created these are still useful in linux
+        users-primaryUser = import ./modules/darwin/users.nix;
       };
 
       homeManagerModules = {

@@ -127,6 +127,12 @@ in
     ${optionalString pkgs.stdenv.isDarwin "set-background-to-macOS"}
   '';
 
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+  programs.command-not-found.enable = false;
+
   programs.fish.interactiveShellInit = ''
     set -g fish_greeting ""
     ${pkgs.thefuck}/bin/thefuck --alias | source
@@ -146,6 +152,11 @@ in
     set -g fish_color_operator     green     # color of parameter expansion operators like '*' and '~'
     set -g fish_color_escape       red       # color of character escapes like '\n' and and '\x70'
     set -g fish_color_cancel       red       # color of the '^C' indicator on a canceled command
+
+    function __fish_command_not_found_handler --on-event="fish_command_not_found"
+      ${pkgs.bashInteractive}/bin/bash -c \
+        "source ${config.programs.nix-index.package}/etc/profile.d/command-not-found.sh; command_not_found_handle $argv"
+    end
   '';
   # }}}
 }
