@@ -73,7 +73,7 @@ in
       '' + optionalString config.programs.bat.enable ''
 
         # Use correct theme for `bat`.
-        set -xg BAT_THEME "Solarized ($term_background)"
+        # set -xg BAT_THEME "Solarized ($term_background)"
       '' + optionalString (elem pkgs.bottom config.home.packages) ''
 
         # Use correct theme for `btm`.
