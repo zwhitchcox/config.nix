@@ -29,84 +29,70 @@
       # Some building blocks ------------------------------------------------------------------- {{{
 
       inherit (darwin.lib) darwinSystem;
-      inherit (inputs.nixpkgs-unstable.lib) nixosSystem;
-      inherit (inputs.nixpkgs-unstable.lib) attrValues makeOverridable optionalAttrs singleton;
+      inherit (inputs.nixpkgs-unstable.lib) attrValues makeOverridable optionalAttrs singleton nixosSystem;
 
       # Configuration for `nixpkgs`
       nixpkgsConfig = {
         config = {
           allowUnfree = true;
         };
-	overlays = attrValues self.overlays;
+        overlays = attrValues self.overlays;
       };
 
       homeManagerStateVersion = "22.11";
 
-      primaryUserInfo = {
+      primaryUserInfoBase = {
         username = "zwhitchcox";
         fullName = "Zane Hitchcox";
         email = "zwhitchcox@gmail.com";
-        nixConfigDirectory = "/Users/zwhitchcox/.config/nix";
       };
-      primaryUserInfoLinux = primaryUserInfo // {
-        nixConfigDirectory = "/home/zwhitchcox/.config/nix";
+      primaryUserInfoDarwin = with primaryUserInfoBase; primaryUserInfoBase // rec {
+        homedir = "/Users/${username}";
+        nixConfigDirectory = "${homedir}/.config/nix";
       };
+      primaryUserInfoLinux = with primaryUserInfoBase; primaryUserInfoBase // rec {
+        homedir = "/home/${username}";
+        nixConfigDirectory = "${homedir}/.config/nix";
+      };
+      # todo: use home for config
+      # primaryUserInfo.home = if builtins.currentSystem == "darwin"
+      #   then "/Users/zwhitchcox"
+      #   else "/home/${primaryUserInfo.username}";
+      # primaryUserInfo.nixConfigDirectory = if builtins.currentSystem == "linux"
+      #   then "/Users/zwhitchcox/.config/nix"
+      #   else "/home/${primaryUserInfo.username}/.config/nix";
 
-      # Modules shared by most `nix-darwin` personal configurations.
-      nixDarwinCommonModules = attrValues self.darwinModules ++ [
-        # `home-manager` module
-        home-manager.darwinModules.home-manager
-        (
-          { config, ... }:
+      hmBase =
+          { config, pkgs, ... }:
           let
             inherit (config.users) primaryUser;
           in
           {
             nixpkgs = nixpkgsConfig;
-            # Hack to support legacy worklows that use `<nixpkgs>` etc.
-            # nix.nixPath = { nixpkgs = "${primaryUser.nixConfigDirectory}/nixpkgs.nix"; };
-            nix.nixPath = { nixpkgs = "${inputs.nixpkgs-unstable}"; };
-            # `home-manager` config
-            users.users.${primaryUser.username}.home = "/Users/${primaryUser.username}";
+            nix.nixPath = [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
+            users.users.${primaryUser.username} = {
+              home = primaryUser.homedir;
+              shell = pkgs.fish;
+              isNormalUser = true;
+              extraGroups = [ "wheel" "networkmanager" ];
+            };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${primaryUser.username} = {
               imports = attrValues self.homeManagerModules;
               home.stateVersion = homeManagerStateVersion;
-              home.user-info = config.users.primaryUser;
+              home.user-info = primaryUser;
+              home.homedir = primaryUser.homedir;
             };
-            # Add a registry entry for this flake
-            nix.registry.my.flake = self;
-          }
-        )
-      ];
+          };
 
-      # Modules shared by most `nixos` personal configurations.
+
+      # Modules shared by most `nix-darwin` personal configurations.
+      nixDarwinCommonModules = attrValues self.darwinModules ++ [
+        home-manager.darwinModules.home-manager hmBase
+      ];
       nixosCommonModules = attrValues self.nixosModules ++ [
-        # `home-manager` module
-        home-manager.nixosModules.home-manager
-        (
-          { config, pkgs, ... }:
-          {
-            nixpkgs = nixpkgsConfig;
-            nix.nixPath = [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
-            users.users.${primaryUserInfo.username} = {
-              home = "/home/${primaryUserInfo.username}";
-              isNormalUser = true;
-              extraGroups = [ "wheel" "networkmanager" ];
-              shell = pkgs.fish;
-            };
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${primaryUserInfo.username} = {
-              imports = attrValues self.homeManagerModules;
-              home.stateVersion = homeManagerStateVersion;
-              home.user-info = primaryUserInfoLinux;
-            };
-            # Add a registry entry for this flake
-            nix.registry.my.flake = self;
-          }
-        )
+        home-manager.nixosModules.home-manager hmBase
       ];
       # }}}
     in
@@ -128,7 +114,7 @@
           system = "x86_64-darwin";
           modules = nixDarwinCommonModules ++ [
             {
-              users.primaryUser = primaryUserInfo;
+              users.primaryUser = primaryUserInfoDarwin;
               networking.computerName = "NoobBookPro";
               networking.hostName = "NoobBookPro";
               networking.knownNetworkServices = [
@@ -145,7 +131,7 @@
           system = "x86_64-darwin";
           modules = nixDarwinCommonModules ++ [
             ({ lib, ... }: {
-              users.primaryUser = primaryUserInfo // {
+              users.primaryUser = primaryUserInfoDarwin // {
                 username = "runner";
                 nixConfigDirectory = "/Users/runner/work/nixpkgs/nixpkgs";
               };
@@ -162,7 +148,8 @@
           modules = nixosCommonModules ++ [
             ./linux/hw/x1.nix
             {
-              config.networking.hostName = "x1";
+              networking.hostName = "x1";
+              users.primaryUser = primaryUserInfoLinux;
             }
           ];
         };
@@ -178,11 +165,9 @@
         };
         modules = attrValues self.homeManagerModules ++ singleton ({ config, ...}: {
           home.username = config.home.user-info.username;
-          home.homeDirectory = "/home/${config.home.username}";
+          home.homedir = primaryUserInfoLinux.homedir;
           home.stateVersion = homeManagerStateVersion;
-          home.user-info = primaryUserInfo // {
-            nixConfigDirectory = "${config.home.homeDirectory}/.config/nix";
-          };
+          home.user-info = primaryUserInfoLinux;
         });
       };
       # }}}
@@ -283,6 +268,7 @@
         user-starship = import ./home/starship.nix;
         user-starship-symbols = import ./home/starship-symbols.nix;
         user-scripts = import ./home/scripts.nix;
+        # user-firefox = import ./home/firefox.nix;
 
         # # Modules I've created
         colors = import ./modules/home/colors;

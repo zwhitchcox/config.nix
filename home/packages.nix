@@ -28,6 +28,9 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    signal-desktop
+    spotify
+
     # Some basics
     abduco # lightweight session management
     bandwhich # display current network utilization by process

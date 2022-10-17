@@ -22,5 +22,9 @@ in
       type = with types; nullOr string;
       default = null;
     };
+    homedir = mkOption {
+      type = with types; nullOr string;
+      default = null;
+    };
   };
 }
