@@ -54,13 +54,6 @@
         homedir = "/home/${username}";
         nixConfigDirectory = "${homedir}/.config/nix";
       };
-      # todo: use home for config
-      # primaryUserInfo.home = if builtins.currentSystem == "darwin"
-      #   then "/Users/zwhitchcox"
-      #   else "/home/${primaryUserInfo.username}";
-      # primaryUserInfo.nixConfigDirectory = if builtins.currentSystem == "linux"
-      #   then "/Users/zwhitchcox/.config/nix"
-      #   else "/home/${primaryUserInfo.username}/.config/nix";
 
       hmBase =
           { config, pkgs, ... }:
@@ -142,18 +135,22 @@
       };
 
       # my `nixos` configs
-      nixosConfigurations = {
-        x1 = nixosSystem {
-          system = "x86_64-linux";
-          modules = nixosCommonModules ++ [
-            ./linux/hw/x1.nix
-            {
-              networking.hostName = "x1";
-              users.primaryUser = primaryUserInfoLinux;
-            }
-          ];
-        };
-      };
+      nixosConfigurations = with inputs.nixpkgs-unstable.lib;
+        let
+          hosts = builtins.attrNames (builtins.readDir ./machines);
+
+          mkHost = name:
+            let
+              system = builtins.readFile (./machines + "/${name}/system");
+            in nixosSystem {
+              inherit system;
+              modules = nixosCommonModules ++ [
+                (import (./machines + "/${name}/hardware-configuration.nix"))
+                { networking.hostName = name; }
+                { users.primaryUser = primaryUserInfoLinux; }
+              ];
+            };
+        in genAttrs hosts mkHost;
 
       # Config I use with Linux cloud VMs
       # Build and activate on new system with:

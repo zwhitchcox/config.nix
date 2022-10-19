@@ -39,51 +39,52 @@ ensure_vars() {
 }
 
 ensure_device() {
-  if [ ! -e $DEVICE ]; then
+  if [ ! -e "$DEVICE" ]; then
     err_exit "Could not find $DEVICE"
   fi
 }
 
 init_fs() {
-  sudo bash installation/fs.sh  $DEVICE
+  sudo bash installation/fs.sh  "$DEVICE"
 }
 
 generate_hw() {
   hw_location=system/hw/$HOSTNAME.nix
-  if [ ! -f $hw_location ]; then
-    nixos-generate-config --no-filesystems --show-hardware-config > $hw_location
+  if [ ! -f "$hw_location" ]; then
+    nixos-generate-config --no-filesystems --show-hardware-config > "$hw_location"
   fi
-systemconf=system/default.nix
-  if grep -q $HOSTNAME $systemconf; then
+  systemconf=system/default.nix
+  if grep -q "$HOSTNAME" "$systemconf"; then
     return 0;
   fi
   last_brace=$(grep -n '}' $systemconf | tail -n 1 | cut -d: -f 1)
   sed -i "${last_brace}d" $systemconf
-  echo "  $HOSTNAME"' = nixosSystem {' >> $systemconf
-  cat >> $systemconf  << EOF
+  {
+    echo "  $HOSTNAME"' = nixosSystem {';
+    cat  << EOF
     inherit system;
-    specialArgs = { inherit inputs; };
+    specialargs = { inherit inputs; };
     modules = [
 EOF
-  echo "      ./hw/$HOSTNAME.nix" >> $systemconf
-  cat >> $systemconf  << EOF
-      ./fs.nix
-      ./conf.nix
-    ];
-  };
-}
+    echo "      ./hw/$HOSTNAME.nix"
+    cat << EOF
+        ./conf.nix
+      ];
+    };
+  }
 EOF
+  } >> "$systemconf"
 }
 
 install_flake() {
   set -x
-  sudo nixos-install --flake .#$HOSTNAME
+  sudo nixos-install --flake ".#$HOSTNAME"
 }
 
-pushd $HOME/nix-config
+pushd "$HOME/nix-config"
   ensure_vars
   ensure_device
-  [ $nofs == true ] || init_fs
+  [ "$nofs" == true ] || init_fs
   generate_hw
   install_flake
 popd

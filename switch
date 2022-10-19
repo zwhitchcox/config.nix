@@ -2,9 +2,9 @@
 
 set -x
 
-sys=$(uname -s | tr '[:upper:]' '[:lower:]')
+kernel=$(uname -s | tr '[:upper:]' '[:lower:]')
 
-if cat /etc/os-release | grep -q 'NAME=NixOS'; then
+if grep -q 'NAME=NixOS' /etc/os-release; then
   name=${1:-$(hostname)}
   git add . -A
   sudo nixos-rebuild switch --flake ".#$name"
@@ -19,9 +19,9 @@ do_bld() {
 
 build() {
   git add . -A
-  if [ $sys == darwin ]; then
+  if [ "$kernel" == darwin ]; then
     do_bld .#darwinConfigurations.$name.system
-  elif [ $sys == linux ]; then
+  elif [ "$kernel" == linux ]; then
     do_bld .#homeConfigurations.user.activationPackage
   fi
 }

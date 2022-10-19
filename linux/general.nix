@@ -6,7 +6,7 @@
 
       ./wm/gnome.nix
       ./sound
-      ./hw/fs.nix
+      ./fs.nix
     ];
   config = {
     nix = {
