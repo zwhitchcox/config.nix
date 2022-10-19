@@ -64,6 +64,7 @@
     nodePackages.typescript
     nodejs-16_x
     s3cmd
+    parted
 
     # Useful nix related tools
     cachix # adding/managing alternative binary caches hosted by Cachix
