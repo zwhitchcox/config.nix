@@ -25,12 +25,12 @@ clone_config() {
   fi
 }
 
-config_location=$HOME/config/nix
+config_location=$HOME/.config/nix
 ensure_vars
 bash "$(dirname "${BASH_SOURCE[0]}")/connect.sh" "$WIFI_NAME" "$WIFI_PASS"
 clone_config
 
 echo to continue installation
 echo "cd $config_location
-sudo bash installation/install.sh"
+bash bootstrap/install.sh"
 
