@@ -82,7 +82,7 @@
               imports = attrValues self.homeManagerModules;
               home.stateVersion = homeManagerStateVersion;
               home.user-info = primaryUser;
-              home.homedir = primaryUser.homedir;
+              # home.homedir = primaryUser.homedir;
             };
           };
 
