@@ -190,6 +190,7 @@ wk.register ({
     b = { '<Cmd>Telescope file_browser<CR>'              , 'File Browser'           },
     f = { '<Cmd>Telescope find_files_workspace<CR>'      , 'Files in workspace'     },
     F = { '<Cmd>Telescope find_files<CR>'                , 'Files in cwd'           },
+    e = { "<cmd>NvimTreeFindFile<cr>", "Reveal file in explorer" },
     g = { '<Cmd>Telescope live_grep_workspace<CR>'       , 'Grep in workspace'      },
     G = { '<Cmd>Telescope live_grep<CR>'                 , 'Grep in cwd'            },
     l = { '<Cmd>Telescope current_buffer_fuzzy_find<CR>' , 'Buffer lines'           },

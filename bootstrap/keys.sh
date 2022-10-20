@@ -88,4 +88,3 @@ gh_keys() {
 # config gh
 check_token
 gh_keys
-

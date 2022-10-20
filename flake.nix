@@ -65,7 +65,7 @@
             nix.nixPath = [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
             users.users.${primaryUser.username} = {
               home = primaryUser.homedir;
-              shell = pkgs.fish;
+              shell = pkgs.zsh;
               isNormalUser = true;
               extraGroups = [ "wheel" "networkmanager" ];
             };
@@ -246,6 +246,7 @@
       nixosModules = {
         user-bootstrap = import ./linux/bootstrap.nix;
         user-general = import ./linux/general.nix;
+        user-zsh = import ./home/zsh;
 
         # # Modules I've created these are still useful in linux
         users-primaryUser = import ./modules/darwin/users.nix;
@@ -255,7 +256,7 @@
         # My configurations
         user-colors = import ./home/colors.nix;
         user-config-files = import ./home/config-files.nix;
-        user-fish = import ./home/fish.nix;
+        # user-fish = import ./home/fish.nix;
         user-git = import ./home/git.nix;
         user-git-aliases = import ./home/git-aliases.nix;
         user-gh-aliases = import ./home/gh-aliases.nix;

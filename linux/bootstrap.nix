@@ -33,22 +33,22 @@ rec {
     zsh
   ];
 
-  # Make Fish the default shell
-  programs.fish.enable = true;
-  programs.fish.useBabelfish = true;
-  # Needed to address bug where $PATH is not properly set for fish:
-  # https://github.com/LnL7/nix-darwin/issues/122
-  programs.fish.shellInit = ''
-    set scriptdir $HOME/.config/scripts
-    if [ -d $scriptdir ];
-      for p in $scriptdir/* ;
-        if not contains $p $fish_user_paths
-          set -g fish_user_paths $fish_user_paths $p
-        end
-      end
-    end
-  '';
-  environment.variables.SHELL = "/run/current-system/sw/bin/fish";
+#   # Make Fish the default shell
+#   programs.fish.enable = true;
+#   programs.fish.useBabelfish = true;
+#   # Needed to address bug where $PATH is not properly set for fish:
+#   # https://github.com/LnL7/nix-darwin/issues/122
+#   programs.fish.shellInit = ''
+#     set scriptdir $HOME/.config/scripts
+#     if [ -d $scriptdir ];
+#       for p in $scriptdir/* ;
+#         if not contains $p $fish_user_paths
+#           set -g fish_user_paths $fish_user_paths $p
+#         end
+#       end
+#     end
+#   '';
+  # environment.variables.SHELL = "/run/current-system/sw/bin/zsh";
 
   # Install and setup ZSH to work with nix as well
   programs.zsh.enable = true;
