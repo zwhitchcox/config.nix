@@ -128,3 +128,5 @@ require('lspconfig')['rust_analyzer'].setup{
       ["rust-analyzer"] = {}
     }
 }
+
+require('lspconfig')['cmake'].setup {}

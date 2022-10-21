@@ -43,6 +43,7 @@ in
 
   home.packages = with pkgs; [
     ripgrep # for telescope text search
+    cmake-language-server # for ccls
   ];
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
