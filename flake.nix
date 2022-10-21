@@ -265,6 +265,7 @@
         user-packages = import ./home/packages.nix;
         user-starship = import ./home/starship.nix;
         user-starship-symbols = import ./home/starship-symbols.nix;
+        user-rust = import ./home/rust.nix;
         user-scripts = import ./home/scripts.nix;
         # user-firefox = import ./home/firefox.nix;
 
