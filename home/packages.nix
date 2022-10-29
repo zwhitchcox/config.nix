@@ -30,6 +30,8 @@
   home.packages = with pkgs; [
     signal-desktop
     spotify
+    qbittorrent
+    steam-run
 
     # Some basics
     abduco # lightweight session management
