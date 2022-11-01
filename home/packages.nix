@@ -57,6 +57,8 @@
     wget
     xz # extract XZ archives
     pstree
+    gzip
+    file
 
     # Dev stuff
     # (agda.withPackages (p: [ p.standard-library ]))
