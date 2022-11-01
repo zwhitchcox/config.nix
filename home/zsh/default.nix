@@ -83,6 +83,7 @@
     };
     initExtra = ''
       cmdignore=(htop tmux top vim)
+      export PATH=$PATH:/home/${config.users.primaryUser.username}/.mutable_node_modules/bin
 
       # export GITHUB_TOKEN=$(cat /var/secrets/github_token)
 

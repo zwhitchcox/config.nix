@@ -268,6 +268,7 @@
         user-rust = import ./home/rust.nix;
         user-scripts = import ./home/scripts.nix;
         user-dconf = import ./home/dconf.nix;
+        user-npmg = import ./home/npmg.nix;
         # user-firefox = import ./home/firefox.nix;
 
         # # Modules I've created
