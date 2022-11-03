@@ -98,6 +98,11 @@ wk.register ({
     h = { '<Cmd>tabprevious<CR>'   , 'Previous'          },
   },
 
+  b = {
+    h = {'<cmd>bp<cr>', 'Previous Buffer'},
+    l = {'<cmd>bn<cr>', 'Next Buffer'},
+  },
+
   -- Windows/splits
   -- ['-']  = { '<Cmd>new +term<CR>'           , 'New terminal below'               },
   -- ['_']  = { '<Cmd>botright new +term<CR>'  , 'New termimal below (full-width)'  },
