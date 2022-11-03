@@ -44,6 +44,7 @@
     exa # fancy version of `ls`
     fd # fancy version of `find`
     htop # fancy version of `top`
+    iotop # top for disk io
     hyperfine # benchmarking tool
     mosh # wrapper for `ssh` that better and not dropping connections
     nodePackages.speed-test # nice speed-test tool
