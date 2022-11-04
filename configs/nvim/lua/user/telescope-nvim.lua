@@ -5,6 +5,7 @@ vim.cmd 'packadd telescope-file-browser.nvim'
 vim.cmd 'packadd telescope-fzf-native.nvim'
 vim.cmd 'packadd telescope-symbols.nvim'
 vim.cmd 'packadd telescope-zoxide'
+vim.cmd 'packadd telescope-project.nvim'
 
 local telescope = require 'telescope'
 local actions = require 'telescope.actions'
@@ -101,6 +102,7 @@ telescope.load_extension 'builtin_extensions'
 telescope.load_extension 'file_browser'
 telescope.load_extension 'fzf'
 telescope.load_extension 'zoxide'
+telescope.load_extension 'projects'
 
 require'telescope._extensions.zoxide.config'.setup {
   mappings = {

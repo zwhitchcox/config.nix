@@ -64,7 +64,9 @@ in
     direnv-vim
     goyo-vim
     vim-fugitive
+    impatient-nvim
   ] ++ map nonVSCodePluginWithConfig [
+    project-nvim # project management
     neoscroll-nvim
     which-key-nvim
     nvim-tree-lua
@@ -86,6 +88,7 @@ in
       telescope-fzf-native-nvim
       telescope-symbols-nvim
       telescope-zoxide
+      telescope-project-nvim
     ])
     toggleterm-nvim
     vim-pencil

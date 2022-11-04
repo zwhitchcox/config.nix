@@ -207,6 +207,7 @@ wk.register ({
     t = { '<Cmd>Telescope builtin<CR>'                   , 'Telescope lists'        },
     w = { '<Cmd>Telescope grep_string_workspace<CR>'     , 'Grep word in workspace' },
     W = { '<Cmd>Telescope grep_string<CR>'               , 'Grep word in cwd'       },
+    p = { '<Cmd>Telescope projects<CR>'                  , 'Projects'       },
     v = {
       name = '+Vim',
       a = { '<Cmd>Telescope autocommands<CR>'    , 'Autocommands'    },
