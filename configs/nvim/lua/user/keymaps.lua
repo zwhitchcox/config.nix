@@ -24,6 +24,8 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<C-a-h>", ":bp<CR>", opts)
 keymap("n", "<C-a-l>", ":bn<CR>", opts)
+keymap("n", "<C-a-j>", "<C-e>", opts)
+keymap("n", "<C-a-k>", "<C-y>", opts)
 keymap("n", "J", "<C-d>zz", opts)
 keymap("n", "K", "<C-u>zz", opts)
 
