@@ -24,11 +24,11 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<C-a-h>", ":bp<CR>", opts)
 keymap("n", "<C-a-l>", ":bn<CR>", opts)
-keymap("n", "J", "<C-d>", opts)
-keymap("n", "K", "<C-u>", opts)
+keymap("n", "J", "<C-d>zz", opts)
+keymap("n", "K", "<C-u>zz", opts)
 
 -- kitty messes up <C-^> somehow
-keymap("n", "<C-6", "<C-^>", opts)
+keymap("n", "<C-6>", "<C-^>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)

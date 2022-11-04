@@ -53,6 +53,7 @@ in
     vim-eunuch
     vim-haskell-module-name
     vim-surround
+    vim-fugitive
   ] ++ map (p: { plugin = p; optional = true; }) [
     zoomwintab-vim
   ] ++ map nonVSCodePlugin [

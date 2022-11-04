@@ -142,7 +142,7 @@ wk.register ({
   g = {
     name = '+Git',
     -- vim-fugitive
-    b = { '<Cmd>Gblame<CR>' , 'Blame'  },
+    b = { '<Cmd>Git blame<CR>' , 'Blame'  },
     s = { '<Cmd>Git<CR>'    , 'Status' },
     d = {
       name = '+Diff',
