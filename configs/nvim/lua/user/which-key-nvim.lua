@@ -128,7 +128,6 @@ wk.register ({
     T = { '<Cmd>wincmd T<CR>' , 'Move to new tab'          },
     r = { '<Cmd>wincmd r<CR>' , 'Rotate clockwise'         },
     R = { '<Cmd>wincmd R<CR>' , 'Rotate counter-clockwise' },
-    z = { '<Cmd>packadd zoomwintab.vim | ZoomWinTabToggle<CR>', 'Toggle zoom' },
     -- Resize
     ['='] = { '<Cmd>wincmd =<CR>'            , 'All equal size'   },
     ['-'] = { '<Cmd>resize -5<CR>'           , 'Decrease height'  },

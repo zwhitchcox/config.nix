@@ -53,7 +53,6 @@ in
     vim-eunuch
     vim-haskell-module-name
     vim-surround
-    vim-fugitive
   ] ++ map (p: { plugin = p; optional = true; }) [
     zoomwintab-vim
   ] ++ map nonVSCodePlugin [
@@ -63,6 +62,7 @@ in
     goyo-vim
     vim-fugitive
   ] ++ map nonVSCodePluginWithConfig [
+    neoscroll-nvim
     which-key-nvim
     nvim-tree-lua
     editorconfig-vim

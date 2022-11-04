@@ -26,8 +26,8 @@ keymap("n", "<C-a-h>", ":bp<CR>", opts)
 keymap("n", "<C-a-l>", ":bn<CR>", opts)
 keymap("n", "<C-a-j>", "<C-e>", opts)
 keymap("n", "<C-a-k>", "<C-y>", opts)
-keymap("n", "J", "<C-d>zz", opts)
-keymap("n", "K", "<C-u>zz", opts)
+-- keymap("n", "J", "<C-D>", opts)
+-- keymap("n", "K", "<C-U>", opts)
 
 -- kitty messes up <C-^> somehow
 keymap("n", "<C-6>", "<C-^>", opts)
