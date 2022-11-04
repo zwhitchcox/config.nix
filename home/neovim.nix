@@ -65,6 +65,8 @@ in
     goyo-vim
     vim-fugitive
     impatient-nvim
+    plenary-nvim
+    vim-bbye
   ] ++ map nonVSCodePluginWithConfig [
     project-nvim # project management
     neoscroll-nvim
