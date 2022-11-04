@@ -151,12 +151,13 @@ wk.register ({
     -- gitsigns.nvim
     h = {
       name = '+Hunks',
-      s = { require'gitsigns'.stage_hunk      , 'Stage'      },
-      u = { require'gitsigns'.undo_stage_hunk , 'Undo stage' },
-      r = { require'gitsigns'.reset_hunk      , 'Reset'      },
-      n = { require'gitsigns'.next_hunk       , 'Go to next' },
-      N = { require'gitsigns'.prev_hunk       , 'Go to prev' },
-      p = { require'gitsigns'.preview_hunk    , 'Preview'    },
+      s = { require'gitsigns'.stage_hunk                   , 'Stage'      },
+      u = { require'gitsigns'.undo_stage_hunk              , 'Undo stage' },
+      r = { require'gitsigns'.reset_hunk                   , 'Reset'      },
+      n = { require'gitsigns'.next_hunk                    , 'Go to next' },
+      N = { require'gitsigns'.prev_hunk                    , 'Go to prev' },
+      p = { require'gitsigns'.preview_hunk                 , 'Preview'    },
+      b = { require'gitsigns'.toggle_current_line_blame    , 'Blame'    },
     },
     -- telescope.nvim lists
     l = {

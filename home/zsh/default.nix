@@ -80,6 +80,7 @@
       "ls" = "${pkgs.exa}/bin/exa";
       "hpc" = "bluetoothctl connect CC:98:8B:C0:FC:D2";
       "hpd" = "bluetoothctl disconnect CC:98:8B:C0:FC:D2";
+      ":q" = "exit";
     };
     initExtra = ''
       cmdignore=(htop tmux top vim)

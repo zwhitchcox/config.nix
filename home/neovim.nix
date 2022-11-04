@@ -44,6 +44,7 @@ in
   home.packages = with pkgs; [
     ripgrep # for telescope text search
     cmake-language-server # for ccls
+
   ];
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
@@ -53,8 +54,10 @@ in
     vim-eunuch
     vim-haskell-module-name
     vim-surround
+
+
   ] ++ map (p: { plugin = p; optional = true; }) [
-    zoomwintab-vim
+    nvim-ts-rainbow # rainbow parentheses
   ] ++ map nonVSCodePlugin [
     tokyonight-nvim
     copilot-vim
@@ -75,7 +78,8 @@ in
     null-ls-nvim
     nvim-lastplace
     nvim-lspconfig
-    (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
+    (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars ++ [
+    ]))
     (pluginWithDeps telescope-nvim [
       nvim-web-devicons
       telescope-file-browser-nvim

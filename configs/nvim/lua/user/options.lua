@@ -1,3 +1,4 @@
+local tabstop = 2;
 local options = {
   -- Basic Vim Config --------------------------------------------------------------------------------
   scrolloff  = 10,                         -- start scrolling when cursor is within 5 lines of the ledge
@@ -13,7 +14,7 @@ local options = {
 
    --Tab key behavior
   expandtab  = true,                      -- Convert tabs to spaces
-  tabstop    = 2,                         -- Width of tab character
+  tabstop    = tabstop,                         -- Width of tab character
   shiftwidth = tabstop,                   -- Width of auto-indents
 
    -- Set where splits open
@@ -27,13 +28,13 @@ local options = {
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0,                        -- so that `` is visible in markdown files
   fileencoding = "utf-8",                  -- the encoding written to a file
-  hlsearch = true,                         -- highlight all matches on previous search pattern
+  hlsearch = false,                         -- highlight all matches on previous search pattern
   pumheight = 10,                          -- pop up menu height
   showmode = false,                        -- we don't need to see things like -- INSERT -- anymore
   showtabline = 2,                         -- always show tabs
   smartindent = true,                      -- make indenting smarter again
   swapfile = false,                        -- creates a swapfile
-  -- termguicolors = true,                    -- set term gui colors (most terminals support this)
+  termguicolors = true,                    -- set term gui colors (most terminals support this)
   timeoutlen = 100,                        -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true,                         -- enable persistent undo
   writebackup = false,                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
