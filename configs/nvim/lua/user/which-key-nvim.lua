@@ -70,10 +70,10 @@ wk.setup {
   },
 }
 
--- Spaced prefiexd in Normal mode
+-- Spaced prefixed in Normal mode
 wk.register ({
   [' '] = {
-    name = "Terminal",
+    name = "+Terminal",
     n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
     u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
     t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
@@ -96,11 +96,6 @@ wk.register ({
     q = { '<Cmd>tabclose<CR>'      , 'Close'             },
     l = { '<Cmd>tabnext<CR>'       , 'Next'              },
     h = { '<Cmd>tabprevious<CR>'   , 'Previous'          },
-  },
-
-  b = {
-    h = {'<cmd>bp<cr>', 'Previous Buffer'},
-    l = {'<cmd>bn<cr>', 'Next Buffer'},
   },
 
   -- Windows/splits
