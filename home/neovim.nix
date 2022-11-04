@@ -68,6 +68,7 @@ in
     plenary-nvim
     vim-bbye
   ] ++ map nonVSCodePluginWithConfig [
+    auto-session
     project-nvim # project management
     neoscroll-nvim
     which-key-nvim

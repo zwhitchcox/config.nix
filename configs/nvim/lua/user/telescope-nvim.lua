@@ -95,6 +95,12 @@ telescope.setup {
     -- file_browser = {
     --   hijack_netrw = true,
     -- },
+    project = {
+      hidden_files = true, -- default: false
+      theme = "dropdown",
+      order_by = "asc",
+      sync_with_nvim_tree = true, -- default false
+    }
   },
 }
 
@@ -109,6 +115,7 @@ require'telescope._extensions.zoxide.config'.setup {
     ['<CR>'] = {
       keepinsert = true,
       action = function(selection)
+        -- vim.cmd('NvimTreeOpen ' .. selection.path)
         telescope.extensions.file_browser.file_browser { cwb = selection.path }
       end
     },
