@@ -5,11 +5,18 @@ vim.cmd 'packadd telescope-file-browser.nvim'
 vim.cmd 'packadd telescope-fzf-native.nvim'
 vim.cmd 'packadd telescope-symbols.nvim'
 vim.cmd 'packadd telescope-zoxide'
-vim.cmd 'packadd telescope-project.nvim'
+vim.cmd 'packadd telescope-ui-select.nvim'
 
 local telescope = require 'telescope'
 local actions = require 'telescope.actions'
 local previewers = require 'telescope.previewers'
+
+telescope.load_extension 'builtin_extensions'
+telescope.load_extension 'file_browser'
+telescope.load_extension 'fzf'
+telescope.load_extension 'zoxide'
+telescope.load_extension 'ui-select'
+
 
 telescope.setup {
   defaults = {
@@ -34,7 +41,7 @@ telescope.setup {
         ["<Down>"] = actions.move_selection_next,
         ["<Up>"] = actions.move_selection_previous,
 
-        ["<CR>"] = actions.select_default,
+        -- ["<CR>"] = actions.select_default,
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,
@@ -50,12 +57,13 @@ telescope.setup {
         ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
         ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
         ["<C-l>"] = actions.complete_tag,
+        -- ["<C-l>"] = project_actions.change_working_directory,
         ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
       },
       n = {
-        ['<CR>'] = actions.select_default + actions.center,
+        -- ['<CR>'] = actions.select_default + actions.center,
         ['<C-c>'] = actions.close,
-                ["<esc>"] = actions.close,
+        ["<esc>"] = actions.close,
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,
@@ -95,20 +103,8 @@ telescope.setup {
     -- file_browser = {
     --   hijack_netrw = true,
     -- },
-    project = {
-      hidden_files = true, -- default: false
-      theme = "dropdown",
-      order_by = "asc",
-      sync_with_nvim_tree = true, -- default false
-    }
   },
 }
-
-telescope.load_extension 'builtin_extensions'
-telescope.load_extension 'file_browser'
-telescope.load_extension 'fzf'
-telescope.load_extension 'zoxide'
-telescope.load_extension 'projects'
 
 require'telescope._extensions.zoxide.config'.setup {
   mappings = {

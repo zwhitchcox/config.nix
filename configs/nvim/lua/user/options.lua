@@ -1,5 +1,6 @@
 local tabstop = 2;
 local options = {
+  autochdir = false,
   -- Basic Vim Config --------------------------------------------------------------------------------
   scrolloff  = 10,                         -- start scrolling when cursor is within 5 lines of the ledge
   linebreak  = true,                       -- soft wraps on words not individual chars
@@ -49,7 +50,7 @@ local options = {
   breakindent = true,
   breakindentopt = "shift:2,min:40,sbr",
 }
-
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 vim.opt.shortmess:append "c"
 
 for k, v in pairs(options) do

@@ -7,6 +7,17 @@ let
 
   pluginWithDeps = plugin: deps: plugin.overrideAttrs (_: { dependencies = deps; });
 
+  session-lens = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = "session-lens";
+    version = "2022-09-05";
+    src = pkgs.fetchFromGitHub {
+      owner = "rmagatti";
+      repo = "session-lens";
+      rev = "103a45dfedc23fa6bac48dc8cdcd62fa9f98ac0c";
+      sha256="sha256-MFBWT8EuH7KhdXR4hDRuz+p0GGSJTJCbf7d/LBvKZSI=";
+    };
+  };
+
   nonVSCodePluginWithConfig = plugin: {
     inherit plugin;
     optional = true;
@@ -69,7 +80,6 @@ in
     vim-bbye
   ] ++ map nonVSCodePluginWithConfig [
     auto-session
-    project-nvim # project management
     neoscroll-nvim
     which-key-nvim
     nvim-tree-lua
@@ -91,10 +101,10 @@ in
       telescope-fzf-native-nvim
       telescope-symbols-nvim
       telescope-zoxide
-      telescope-project-nvim
+      telescope-ui-select-nvim
     ])
     toggleterm-nvim
-    vim-pencil
+    # vim-pencil
     vim-polyglot
   ];
 

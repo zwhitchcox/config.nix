@@ -87,3 +87,5 @@ require 'user.keymaps'
 require 'user.zoom'
 require 'user.options'
 require 'user.theme'
+
+vim.cmd("set noautochdir")

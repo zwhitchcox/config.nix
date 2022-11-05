@@ -1,7 +1,7 @@
 -- Define all `<Space>` prefixed keymaps with which-key.nvim
 -- https://github.com/folke/which-key.nvim
 vim.cmd 'packadd which-key.nvim'
-vim.cmd 'packadd! gitsigns.nvim' -- needed for some mappings
+-- vim.cmd 'packadd! gitsigns.nvim' -- needed for some mappings
 
 local wk = require 'which-key'
 wk.setup {
@@ -87,6 +87,21 @@ wk.register ({
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+  -- s = {
+  --   name = "+Session",
+  --   s = { "<cmd>SessionManager save_current_session<cr>", "Save Session" },
+  --   l = { "<cmd>SessionManager load_session<cr>", "Load Session" },
+  --   c = { "<cmd>SessionManager load_current_dir_session<cr>", "Load Current Dir Session" },
+  --   d = { "<cmd>SessionManager delete_session<cr>", "Delete Session" },
+  --   z = { "<cmd>SessionManager load_last_session<cr>", "Load Last Session" },
+  -- },
+  s = {
+    name = "+Session",
+    s = { "<cmd>SaveSession<cr>", "Save Session" },
+    f = { "<cmd>Autosession search<cr>", "Find Session" },
+    -- r = { "<cmd>RestoreSession<cr>", "Restore Current Dir Session" },
+    d = { "<cmd>DeleteSession<cr>", "Delete Session" },
+  },
 
   -- Tabs
   t = {
@@ -149,16 +164,16 @@ wk.register ({
       v = { '<Cmd>Gvdiffsplit<CR>' , 'Split vertical'   },
     },
     -- gitsigns.nvim
-    h = {
-      name = '+Hunks',
-      s = { require'gitsigns'.stage_hunk                   , 'Stage'      },
-      u = { require'gitsigns'.undo_stage_hunk              , 'Undo stage' },
-      r = { require'gitsigns'.reset_hunk                   , 'Reset'      },
-      n = { require'gitsigns'.next_hunk                    , 'Go to next' },
-      N = { require'gitsigns'.prev_hunk                    , 'Go to prev' },
-      p = { require'gitsigns'.preview_hunk                 , 'Preview'    },
-      b = { require'gitsigns'.toggle_current_line_blame    , 'Blame'    },
-    },
+    -- h = {
+    --   name = '+Hunks',
+    --   s = { require'gitsigns'.stage_hunk                   , 'Stage'      },
+    --   u = { require'gitsigns'.undo_stage_hunk              , 'Undo stage' },
+    --   r = { require'gitsigns'.reset_hunk                   , 'Reset'      },
+    --   n = { require'gitsigns'.next_hunk                    , 'Go to next' },
+    --   N = { require'gitsigns'.prev_hunk                    , 'Go to prev' },
+    --   p = { require'gitsigns'.preview_hunk                 , 'Preview'    },
+    --   b = { require'gitsigns'.toggle_current_line_blame    , 'Blame'    },
+    -- },
     -- telescope.nvim lists
     l = {
       name = '+Lists',
@@ -194,8 +209,8 @@ wk.register ({
   },
 
   -- Seaching with telescope.nvim
-  s = {
-    name = '+Search',
+  f = {
+    name = '+Find',
     b = { '<Cmd>Telescope file_browser<CR>'              , 'File Browser'           },
     f = { '<Cmd>Telescope find_files_workspace<CR>'      , 'Files in workspace'     },
     F = { '<Cmd>Telescope find_files<CR>'                , 'Files in cwd'           },
@@ -207,7 +222,7 @@ wk.register ({
     t = { '<Cmd>Telescope builtin<CR>'                   , 'Telescope lists'        },
     w = { '<Cmd>Telescope grep_string_workspace<CR>'     , 'Grep word in workspace' },
     W = { '<Cmd>Telescope grep_string<CR>'               , 'Grep word in cwd'       },
-    p = { '<Cmd>Telescope projects<CR>'                  , 'Projects'       },
+    p = { '<Cmd>Telescope project<CR>'                  , 'Project'       },
     v = {
       name = '+Vim',
       a = { '<Cmd>Telescope autocommands<CR>'    , 'Autocommands'    },
