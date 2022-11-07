@@ -99,12 +99,25 @@ telescope.setup {
       },
     },
   },
+  pickers = {
+    buffers = {
+      mappings = {
+        i = {
+          ["<C-d>"] = actions.delete_buffer
+        },
+        n = {
+          d = actions.delete_buffer
+        }
+      }
+    }
+  },
   extensions = {
     -- file_browser = {
     --   hijack_netrw = true,
     -- },
   },
 }
+
 
 require'telescope._extensions.zoxide.config'.setup {
   mappings = {

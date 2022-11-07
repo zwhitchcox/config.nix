@@ -90,15 +90,20 @@ wk.register ({
 
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   q = {
+    name = "quit",
     q = { "<cmd>q<CR>", "Quit" },
     a = { "<cmd>qa<CR>", "Quit all" },
   },
   Q = {
+    name = "quit!",
     q = { "<cmd>q!<CR>", "Quit" },
     a = { "<cmd>qa!<CR>", "Quit all" },
   },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-  ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+
+  T = {
+    b = { "<cmd>Telescope buffers<cr>", "Find Buffer" },
+  },
 
   s = {
     name = "+Session",

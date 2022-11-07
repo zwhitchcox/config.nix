@@ -114,7 +114,6 @@ in
     lspsaga-nvim
     (pluginWithDeps bufferline-nvim [ nvim-web-devicons ])
     null-ls-nvim
-    nvim-lastplace
     nvim-lspconfig
     (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars ++ [
     ]))
