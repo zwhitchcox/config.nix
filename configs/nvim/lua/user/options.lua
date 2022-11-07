@@ -50,7 +50,6 @@ local options = {
   breakindent = true,
   breakindentopt = "shift:2,min:40,sbr",
 }
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 vim.opt.shortmess:append "c"
 
 for k, v in pairs(options) do

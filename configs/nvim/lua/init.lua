@@ -1,6 +1,9 @@
 local utils = require 'user.utils'
 local augroup = utils.augroup
 local keymaps = utils.keymaps
+-- vim.cmd("set packpath^=~/.config/nvim/plugin/autosession")
+-- require '..plugin.autosession'
+-- vim.cmd("source ~/.config/nvim/plugin/auto-session/plugin/auto-session.vim")
 
 -- Add some aliases for Neovim Lua API
 local o = vim.o
@@ -87,5 +90,6 @@ require 'user.keymaps'
 require 'user.zoom'
 require 'user.options'
 require 'user.theme'
+require 'user.auto-session'
 
 vim.cmd("set noautochdir")

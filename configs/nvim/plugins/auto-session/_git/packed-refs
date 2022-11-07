@@ -1,0 +1,15 @@
+# pack-refs with: peeled fully-peeled sorted 
+84184244125c8f0468a7383067e8decc1b547f35 refs/remotes/origin/add-disabling-plugin-note
+4d5017246d2f70f55704b5e0debe27a7c166c79e refs/remotes/origin/allow-false-and-nil-cwd-change
+764d427c43b12c29738dee9a78e14858bbc525c8 refs/remotes/origin/bypass-auto-save-file-types
+aa468516deca176276903d47f8eed144d00ea471 refs/remotes/origin/dir-changed-fixes
+9a9b1d026a51a93e179754ba30507a05cfdaf886 refs/remotes/origin/dir-changed-pre-handling
+2efe71213c4a6b1e25db0d03b6d072618c83e75f refs/remotes/origin/fix-whitespace-issue
+bf510a39f641f7921272444a50dcffba2dc829e9 refs/remotes/origin/formatting
+afaabe2e72356313d417484d76d04b5c01d34fc0 refs/remotes/origin/formatting-1
+39319bf7ad15a1881f180fa7c14bf6703775035e refs/remotes/origin/main
+716b16b31d1e28f087588363861d3bcd6bd8a1e2 refs/remotes/origin/merge-session-lens
+56adf661ee42cbf41c032348170aac7b4d676739 refs/remotes/origin/only-save-x-sessions-conditionally
+e08656b47ebfd6596f7adb38df4d86ebe3a75c2e refs/remotes/origin/remove-options-from-recommended-opts
+418ac4945a0f17c694013e195e452527e38b977c refs/remotes/origin/stop-logging-error
+74676e20b2f78bc25759ff0e209a11797d044993 refs/remotes/origin/update-readme-with-troubleshooting

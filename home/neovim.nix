@@ -17,6 +17,17 @@ let
       sha256="sha256-MFBWT8EuH7KhdXR4hDRuz+p0GGSJTJCbf7d/LBvKZSI=";
     };
   };
+  my-auto-session = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = "auto-session";
+    version = "2021-09-05";
+    src = ./myas;
+    # src = pkgs.fetchFromGitHub {
+    #   owner = "rmagatti";
+    #   repo = "auto-session";
+    #   rev = "b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b";
+    #   sha256="sha256-MFBWT8EuH7KhdXR4hDRuz+p0GGSJTJCbf7d/LBvKZSI=";
+    # };
+  };
 
   nonVSCodePluginWithConfig = plugin: {
     inherit plugin;
@@ -47,6 +58,7 @@ in
   # Minimal init.vim config to load Lua config. Nix and Home Manager don't currently support
   # `init.lua`.
   xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "${nixConfigDirectory}/configs/nvim/lua";
+  xdg.configFile."nvim/pack/dev/opt".source = mkOutOfStoreSymlink "${nixConfigDirectory}/configs/nvim/plugins";
   xdg.configFile."nvim/colors".source = mkOutOfStoreSymlink "${nixConfigDirectory}/configs/nvim/colors";
   programs.neovim.extraConfig = "lua require('init')";
 
@@ -79,7 +91,7 @@ in
     plenary-nvim
     vim-bbye
   ] ++ map nonVSCodePluginWithConfig [
-    auto-session
+    # my-auto-session
     neoscroll-nvim
     which-key-nvim
     nvim-tree-lua

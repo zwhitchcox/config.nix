@@ -17,13 +17,13 @@ nvim_tree.setup {
   respect_buf_cwd = false,
   update_focused_file = {
     enable = true,
-    update_root = true,
+    update_root = false,
   },
-  actions = {
-    change_dir = {
-      global = true
-    }
-  },
+  -- actions = {
+  --   change_dir = {
+  --     global = true
+  --   }
+  -- },
 
   renderer = {
     root_folder_modifier = ":t",
