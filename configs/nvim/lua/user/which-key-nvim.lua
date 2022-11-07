@@ -1,7 +1,7 @@
 -- Define all `<Space>` prefixed keymaps with which-key.nvim
 -- https://github.com/folke/which-key.nvim
 vim.cmd 'packadd which-key.nvim'
--- vim.cmd 'packadd! gitsigns.nvim' -- needed for some mappings
+vim.cmd 'packadd! gitsigns.nvim' -- needed for some mappings
 
 local wk = require 'which-key'
 wk.setup {
@@ -84,17 +84,13 @@ wk.register ({
   },
 
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-  ["q"] = { "<cmd>q!<CR>", "Quit" },
+  q = {
+    q = "<cmd>q!<CR>", "Quit",
+    a = "<cmd>qa!<CR>", "Quit all",
+  },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-  -- s = {
-  --   name = "+Session",
-  --   s = { "<cmd>SessionManager save_current_session<cr>", "Save Session" },
-  --   l = { "<cmd>SessionManager load_session<cr>", "Load Session" },
-  --   c = { "<cmd>SessionManager load_current_dir_session<cr>", "Load Current Dir Session" },
-  --   d = { "<cmd>SessionManager delete_session<cr>", "Delete Session" },
-  --   z = { "<cmd>SessionManager load_last_session<cr>", "Load Last Session" },
-  -- },
+
   s = {
     name = "+Session",
     s = { "<cmd>SaveSession<cr>", "Save Session" },
