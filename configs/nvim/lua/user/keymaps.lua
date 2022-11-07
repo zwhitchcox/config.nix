@@ -26,8 +26,10 @@ keymap("n", "<C-a-h>", ":bp<CR>", opts)
 keymap("n", "<C-a-l>", ":bn<CR>", opts)
 keymap("n", "<C-a-j>", "<C-e>", opts)
 keymap("n", "<C-a-k>", "<C-y>", opts)
--- keymap("n", "J", "<C-D>", opts)
--- keymap("n", "K", "<C-U>", opts)
+
+-- Better up/down
+keymap("n", "j", "gj", opts)
+keymap("n", "k", "gk", opts)
 
 -- kitty messes up <C-^> somehow
 keymap("n", "<C-6>", "<C-^>", opts)
@@ -67,6 +69,7 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+
 
 -- Terminal --
 -- Better terminal navigation

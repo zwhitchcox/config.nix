@@ -28,7 +28,7 @@ wk.setup {
   -- to enable all native operators, set the preset / operators plugin above
   -- operators = { gc = "Comments" },
   key_labels = {
-    -- override the label used to display some keys. It doesn't effect WK in any other way.
+    -- override the label used to display some keys. It doesn't affect WK in any other way.
     -- For example:
     -- ["<space>"] = "SPC",
     -- ["<cr>"] = "RET",
@@ -81,12 +81,21 @@ wk.register ({
     f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+  -- Windows/splits
+    ['-']  = { '<Cmd>new +term<CR>'           , 'New terminal below'               },
+    ['_']  = { '<Cmd>botright new +term<CR>'  , 'New termimal below (full-width)'  },
+    ['\\'] = { '<Cmd>vnew +term<CR>'          , 'New terminal right'               },
+    ['|']  = { '<Cmd>botright vnew +term<CR>' , 'New termimal right (full-height)' },
   },
 
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   q = {
-    q = "<cmd>q!<CR>", "Quit",
-    a = "<cmd>qa!<CR>", "Quit all",
+    q = { "<cmd>q<CR>", "Quit" },
+    a = { "<cmd>qa<CR>", "Quit all" },
+  },
+  Q = {
+    q = { "<cmd>q!<CR>", "Quit" },
+    a = { "<cmd>qa!<CR>", "Quit all" },
   },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
@@ -109,11 +118,6 @@ wk.register ({
     h = { '<Cmd>tabprevious<CR>'   , 'Previous'          },
   },
 
-  -- Windows/splits
-  -- ['-']  = { '<Cmd>new +term<CR>'           , 'New terminal below'               },
-  -- ['_']  = { '<Cmd>botright new +term<CR>'  , 'New termimal below (full-width)'  },
-  -- ['\\'] = { '<Cmd>vnew +term<CR>'          , 'New terminal right'               },
-  -- ['|']  = { '<Cmd>botright vnew +term<CR>' , 'New termimal right (full-height)' },
   w = {
     name = '+Windows',
     -- Split creation
