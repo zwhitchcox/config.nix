@@ -9,6 +9,7 @@ vim.cmd "packadd cmp-nvim-lua" -- lua source for nvim-cmp
 vim.cmd "packadd cmp-path" -- filesystem source for nvim-cmp
 vim.cmd "packadd cmp-spell" -- spelling source for nvim-cmp
 vim.cmd "packadd cmp-treesitter" -- tree sitter source for nvim-cmp
+vim.cmd "packadd cmp-calc" -- calc source for nvim-cmp
 
 local cmp = require "cmp"
 local luasnip = require "luasnip"
@@ -109,9 +110,13 @@ cmp.setup {
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
         nvim_lua = "[NVIM_LUA]",
-        -- luasnip = "[Snippet]",
+        luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
+        spell = "[Spell]",
+        calc = "[Calc]",
+        cmdline = "[Cmdline]",
+        crates = "[Crates]",
       })[entry.source.name]
       return vim_item
     end,
@@ -124,6 +129,10 @@ cmp.setup {
     { name = "buffer" },
     { name = "path" },
     { name = "crates" },
+    { name = "spell" },
+    { name = "treesitter" },
+    { name = "cmdline" },
+    { name = "calc" },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,

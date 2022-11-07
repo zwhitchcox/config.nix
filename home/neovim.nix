@@ -90,6 +90,7 @@ in
     cmp-path # filesystem source for nvim-cmp
     cmp-spell # spelling source for nvim-cmp
     cmp-treesitter # tree sitter source for nvim-cmp
+    cmp-calc # calc source for nvim-cmp
   ] ++ map nonVSCodePlugin [
     tokyonight-nvim
     copilot-vim
