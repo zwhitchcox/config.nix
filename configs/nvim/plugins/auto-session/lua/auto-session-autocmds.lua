@@ -33,7 +33,7 @@ M.setup_autocmds = function(config, AutoSession)
 
   local conf = config.cwd_change_handling
   local scopes = { "global" }
-  if config.allow_file_tree_integration then
+  if config.auto_session_enable_file_tree_integration then
     table.insert(scopes, "window")
   end
 

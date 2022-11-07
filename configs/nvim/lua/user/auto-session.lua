@@ -5,7 +5,7 @@ vim.o.sessionoptions="blank,buffers,curdir,folds,tabpages,winsize,winpos,termina
 require("auto-session").setup {
   log_level = "debug",
   auto_session_create_enabled = true,
-  allow_file_tree_integration = true,
+  auto_session_enable_file_tree_integration = true,
   cwd_change_handling = {
     restore_upcoming_session = true, -- This is necessary!!
   },

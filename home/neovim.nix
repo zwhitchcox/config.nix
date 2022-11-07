@@ -81,6 +81,15 @@ in
 
   ] ++ map (p: { plugin = p; optional = true; }) [
     nvim-ts-rainbow # rainbow parentheses
+    cmp-cmdline
+    cmp-buffer # buffer text source for nvim-cmp
+    # cmp-conjure # conjure source for nvim-cmp
+    cmp_luasnip # integrates luasnip with nvim-cmp
+    cmp-nvim-lsp # lsp source for nvim-cmp
+    cmp-nvim-lua # lua source for nvim-cmp
+    cmp-path # filesystem source for nvim-cmp
+    cmp-spell # spelling source for nvim-cmp
+    cmp-treesitter # tree sitter source for nvim-cmp
   ] ++ map nonVSCodePlugin [
     tokyonight-nvim
     copilot-vim
@@ -90,8 +99,9 @@ in
     impatient-nvim
     plenary-nvim
     vim-bbye
+    luasnip
   ] ++ map nonVSCodePluginWithConfig [
-    # my-auto-session
+    nvim-cmp
     neoscroll-nvim
     which-key-nvim
     nvim-tree-lua
