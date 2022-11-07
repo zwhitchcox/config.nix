@@ -113,19 +113,18 @@ require('lualine').setup{
 
 ### Options
 
-| Config                                    | Options                  | Default                              | Description                                                     |
-| ------------------------------------------| ------------------------ | ------------------------------------ | --------------------------------------------------------------- |
-| log_level                                 | 'debug', 'info', 'error' | 'info'                               | Sets the log level of the plugin                                |
-| auto_session_enable_last_session          | false, true              | false                                | Loads the last loaded session if session for cwd does not exist |
-| auto_session_enable_file_tree_integration | false, true              | false                                | Fixes problems with nvim-tree and NERDTree compatibility        |
-| auto_session_root_dir                     | "/some/path/you/want"    | vim.fn.stdpath('data').."/sessions/" | Changes the root dir for sessions                               |
-| auto_session_enabled                      | false, true              | true                                 | Enables/disables the plugin's auto save _and_ restore features  |
-| auto_session_create_enabled               | false, true              | true                                 | Enables/disables the plugin's session auto creation             |
-| auto_save_enabled                         | false, true, nil         | nil                                  | Enables/disables auto saving                                    |
-| auto_restore_enabled                      | false, true, nil         | nil                                  | Enables/disables auto restoring                                 |
-| auto_session_suppress_dirs                | ["list", "of paths"]     | nil                                  | Suppress session create/restore if in one of the list of dirs   |
-| auto_session_allowed_dirs                 | ["list", "of paths"]     | nil                                  | Allow session create/restore if in one of the list of dirs      |
-| auto_session_use_git_branch               | false, true, nil         | nil                                  | Use the git branch to differentiate the session name            |
+| Config                           | Options                  | Default                              | Description                                                     |
+| -------------------------------- | ------------------------ | ------------------------------------ | --------------------------------------------------------------- |
+| log_level                        | 'debug', 'info', 'error' | 'info'                               | Sets the log level of the plugin                                |
+| auto_session_enable_last_session | false, true              | false                                | Loads the last loaded session if session for cwd does not exist |
+| auto_session_root_dir            | "/some/path/you/want"    | vim.fn.stdpath('data').."/sessions/" | Changes the root dir for sessions                               |
+| auto_session_enabled             | false, true              | true                                 | Enables/disables the plugin's auto save _and_ restore features  |
+| auto_session_create_enabled      | false, true              | true                                 | Enables/disables the plugin's session auto creation             |
+| auto_save_enabled                | false, true, nil         | nil                                  | Enables/disables auto saving                                    |
+| auto_restore_enabled             | false, true, nil         | nil                                  | Enables/disables auto restoring                                 |
+| auto_session_suppress_dirs       | ["list", "of paths"]     | nil                                  | Suppress session create/restore if in one of the list of dirs   |
+| auto_session_allowed_dirs        | ["list", "of paths"]     | nil                                  | Allow session create/restore if in one of the list of dirs      |
+| auto_session_use_git_branch      | false, true, nil         | nil                                  | Use the git branch to differentiate the session name            |
 
 #### Notes
 
@@ -176,21 +175,6 @@ require('auto-session').setup {
 ```
 
 :warning: WARNING :warning: If the directory does not exist, default directory will be used and an error message will be printed.
-
-### File Tree Integration
-
-This fixes a lot of conflics with [`nvim-tree`](https://github.com/nvim-tree/nvim-tree.lua) and [`NERDTree`](https://github.com/preservim/nerdtree),
-as they both try to control the `cwd`, which causes infinite loops and corrupted session data.
-This feature synchronizes the `cwd` between `auto-session` and the file tree plugin, which turns out to be very powerful and fun to use.
-:warning: This feature is still experimental. Bugs to be expected.
-
-```lua
-require('auto-session').setup {
-    auto_session_enable_file_tree_integration=true,
-}
-```
-
-:warning: Note :warning: If you already have broken session data, this will not fix it. You will have to delete that session and start again
 
 # 📢 Commands
 
