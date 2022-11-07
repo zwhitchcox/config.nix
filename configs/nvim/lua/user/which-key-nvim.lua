@@ -74,6 +74,10 @@ wk.setup {
 wk.register ({
   [' '] = {
     name = "+Terminal",
+    ['1'] = { "<cmd>1ToggleTerm<cr>", "First Terminal" },
+    ['2'] = { "<cmd>2ToggleTerm<cr>", "Second Terminal" },
+    ['3'] = { "<cmd>3ToggleTerm<cr>", "Third Terminal" },
+    ['4'] = { "<cmd>3ToggleTerm<cr>", "Fourth Terminal" },
     n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
     u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
     t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
