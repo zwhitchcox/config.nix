@@ -61,6 +61,10 @@
     gzip
     file
 
+    # Git
+    lazygit
+    gh
+
     # Dev stuff
     # (agda.withPackages (p: [ p.standard-library ]))
     cloc # source code line counter

@@ -168,20 +168,22 @@ wk.register ({
       s = { '<Cmd>Ghdiffsplit<CR>' , 'Split horizontal' },
       v = { '<Cmd>Gvdiffsplit<CR>' , 'Split vertical'   },
     },
+    l = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazygit' },
+
     -- gitsigns.nvim
-    -- h = {
-    --   name = '+Hunks',
-    --   s = { require'gitsigns'.stage_hunk                   , 'Stage'      },
-    --   u = { require'gitsigns'.undo_stage_hunk              , 'Undo stage' },
-    --   r = { require'gitsigns'.reset_hunk                   , 'Reset'      },
-    --   n = { require'gitsigns'.next_hunk                    , 'Go to next' },
-    --   N = { require'gitsigns'.prev_hunk                    , 'Go to prev' },
-    --   p = { require'gitsigns'.preview_hunk                 , 'Preview'    },
-    --   b = { require'gitsigns'.toggle_current_line_blame    , 'Blame'    },
-    -- },
+    h = {
+      name = '+Hunks',
+      s = { require'gitsigns'.stage_hunk                   , 'Stage'      },
+      u = { require'gitsigns'.undo_stage_hunk              , 'Undo stage' },
+      r = { require'gitsigns'.reset_hunk                   , 'Reset'      },
+      n = { require'gitsigns'.next_hunk                    , 'Go to next' },
+      N = { require'gitsigns'.prev_hunk                    , 'Go to prev' },
+      p = { require'gitsigns'.preview_hunk                 , 'Preview'    },
+      b = { require'gitsigns'.toggle_current_line_blame    , 'Blame'    },
+    },
     -- telescope.nvim lists
-    l = {
-      name = '+Lists',
+    T = {
+      name = '+Telescope',
       s = { '<Cmd>Telescope git_status<CR>'  , 'Status'         },
       c = { '<Cmd>Telescope git_commits<CR>' , 'Commits'        },
       C = { '<Cmd>Telescope git_commits<CR>' , 'Buffer commits' },
@@ -203,8 +205,8 @@ wk.register ({
     t = { vim.lsp.buf.type_definition    , 'Jump to type definition' },
     n = { function() vim.diagnostic.goto_next({float = false}) end, 'Jump to next diagnostic' },
     N = { function() vim.diagnostic.goto_prev({float = false}) end, 'Jump to next diagnostic' },
-    l = {
-      name = '+Lists',
+    T = {
+      name = '+Telescope',
       a = { '<Cmd>Telescope lsp_code_actions<CR>'       , 'Code actions'         },
       A = { '<Cmd>Telescope lsp_range_code_actions<CR>' , 'Code actions (range)' },
       r = { '<Cmd>Telescope lsp_references<CR>'         , 'References'           },

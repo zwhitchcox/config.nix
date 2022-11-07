@@ -53,3 +53,51 @@ utils.augroup { name = 'UserToggleTermKeymaps', cmds = {
     end
   }},
 }}
+
+local Terminal = require("toggleterm.terminal").Terminal
+local lazygit = Terminal:new({
+  cmd = "lazygit",
+  -- dir = "git_dir",
+  direction = "float",
+  float_opts = {
+    border = "double",
+  },
+  -- function to run on opening the terminal
+  on_open = function(term)
+    vim.cmd("startinsert!")
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
+  end,
+  -- function to run on closing the terminal
+  on_close = function(term)
+    vim.cmd("startinsert!")
+  end,
+})
+-- local Terminal = require("toggleterm.terminal").Terminal
+function _LAZYGIT_TOGGLE()
+  -- vim.cmd('set statusline += \'%{&ft == "toggleterm" ? "terminal (".b:toggle_number.")" : ""}\'')
+	lazygit:toggle()
+end
+
+local node = Terminal:new({ cmd = "node", hidden = true })
+
+function _NODE_TOGGLE()
+	node:toggle()
+end
+
+local ncdu = Terminal:new({ cmd = "ncdu", hidden = true })
+
+function _NCDU_TOGGLE()
+	ncdu:toggle()
+end
+
+local htop = Terminal:new({ cmd = "htop", hidden = true })
+
+function _HTOP_TOGGLE()
+	htop:toggle()
+end
+
+local python = Terminal:new({ cmd = "python", hidden = true })
+
+function _PYTHON_TOGGLE()
+	python:toggle()
+end
