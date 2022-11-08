@@ -1,15 +1,15 @@
 vim.cmd "packadd nvim-cmp"
 
-vim.cmd "packadd cmp-cmdline" -- command line completion
-vim.cmd "packadd cmp-buffer" -- buffer text source for nvim-cmp
--- vim.cmd "packadd cmp-conjure" -- conjure source for nvim-cmp
+-- vim.cmd "packadd cmp-cmdline" -- command line completion
+-- vim.cmd "packadd cmp-buffer" -- buffer text source for nvim-cmp
+-- -- vim.cmd "packadd cmp-conjure" -- conjure source for nvim-cmp
 vim.cmd "packadd cmp_luasnip" -- integrates luasnip with nvim-cmp
 vim.cmd "packadd cmp-nvim-lsp" -- lsp source for nvim-cmp
-vim.cmd "packadd cmp-nvim-lua" -- lua source for nvim-cmp
-vim.cmd "packadd cmp-path" -- filesystem source for nvim-cmp
-vim.cmd "packadd cmp-spell" -- spelling source for nvim-cmp
-vim.cmd "packadd cmp-treesitter" -- tree sitter source for nvim-cmp
-vim.cmd "packadd cmp-calc" -- calc source for nvim-cmp
+-- vim.cmd "packadd cmp-nvim-lua" -- lua source for nvim-cmp
+-- vim.cmd "packadd cmp-path" -- filesystem source for nvim-cmp
+-- vim.cmd "packadd cmp-spell" -- spelling source for nvim-cmp
+-- vim.cmd "packadd cmp-treesitter" -- tree sitter source for nvim-cmp
+-- vim.cmd "packadd cmp-calc" -- calc source for nvim-cmp
 
 local cmp = require "cmp"
 local luasnip = require "luasnip"
@@ -143,8 +143,8 @@ cmp.setup {
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     },
   },
-  experimental = {
-    ghost_text = false,
-    native_menu = false,
-  },
+  -- experimental = {
+  --   ghost_text = false,
+  --   native_menu = false,
+  -- },
 }
